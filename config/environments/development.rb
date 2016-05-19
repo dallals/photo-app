@@ -39,7 +39,10 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-
+  
+  # config.stripe.secret_key = 'sk_test_9jiU9MEOMYEdoRT24wIpaRhe'
+  # config.stripe.publishable_key = 'pk_test_G49YZNKxZ876IymnybyKaXWX'
+  # config.stripe.eager_load = ['user']
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
