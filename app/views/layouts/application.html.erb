@@ -45,12 +45,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">PhotoApp</a>
+        <a class="navbar-brand" href="/">PhotoApp</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+          <% if current_user %>
+            <li><%= link_to "Images", "/images"  %></li>
+            <li><%= link_to "Edit your profile", "/users/edit"  %></li>
+          <% end %>  
           </ul>
           <ul class="nav navbar-right col-md-4">
             <% if current_user %>
