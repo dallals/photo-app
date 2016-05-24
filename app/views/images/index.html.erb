@@ -1,4 +1,5 @@
 <%- model_class = Image -%>
+<h3>Welcome: <%= current_user.email %></h3>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
@@ -8,6 +9,7 @@
       
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:picture) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -16,6 +18,7 @@
       <tr>
         <td><h4><%= link_to image.name, image_path(image) %></h4></td>
         <td><%= image_tag image.picture.url, width: "100" %></td>
+        <td><%= time_ago_in_words(image.created_at) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_image_path(image), :class => 'btn btn-info btn-xs' %>
