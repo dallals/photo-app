@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :images
+  resources :freeusers
   devise_for :users, :controllers => { :registrations => 'registrations'}
+  
+  get "login", to: 'freeusers#new'
+  post "login", to: 'freeusers#login'
+  post 'logout', to: 'freeusers#logout'
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

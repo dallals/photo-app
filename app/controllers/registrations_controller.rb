@@ -2,6 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 
 def create
+
 	build_resource(sign_up_params)
 
 	resource.class.transaction do
@@ -44,6 +45,6 @@ end
 protected
 
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.for(:sign_up?).push(:payment)
+		devise_parameter_sanitizer.for(:sign_up).push(:payment)
 	end
 end
