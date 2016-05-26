@@ -1,0 +1,64 @@
+<%- model_class = Image -%>
+
+<div id="image-lookup">
+  <h3>Search for images</h3>
+  <%= form_tag search_images_path, remote: true, method: :post, id: 'image-lookup-form' do %>
+  <div class="form-group row no-padding text-center col-md-8">
+    <div class="col-md-8">
+      <%= text_field_tag :search_param, params[:search_param], autofocus: true,
+                                                          class: 'form-control search-box input-sm' %>
+    </div>
+    <div class="col-md-2">
+      <%= button_tag(type: :submit, class: "btn  btn-sm btn-success") do %>
+        <i class="fa fa-search"></i> Look up a Images
+ <% end %>
+    </div>
+  </div>
+  <% end %>
+  	<% if @images.size > 0 %>
+    	<div id="image-lookup-results">
+	    	<table class="search-results-table col-md-12 table table-striped">
+        <thead>
+          <tr>  
+            <th><%= model_class.human_attribute_name(:name) %></th>
+            <th><%= model_class.human_attribute_name(:picture) %></th>
+            <th><%= model_class.human_attribute_name(:created_at) %></th>
+            <th><%= model_class.human_attribute_name(:Photo_by) %></th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+        <div align="center" style="font-size: 16px;">
+      </div>  
+	    		<tbody>
+	    			<% @images.each do |image| %>
+            <% if current_user == image.user || current_user.admin %>
+	    			<tr>
+	    				  <td><h4><%= link_to image.name, image_path(image) %></h4></td>
+                <td><strong><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td><strong>
+					      <td><strong></strong><%= time_ago_in_words (image.created_at) %></td>
+					      <td><strong></strong><%= image.credit %></td>
+                 <td>
+                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                              edit_image_path(image), :class => 'btn btn-info btn-xs' %>
+                  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                              image_path(image),
+                              :method => :delete,
+                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                              :class => 'btn btn-xs btn-danger' %>
+                </td>
+	        		</tr>	 	
+	      		<% end %>
+            <% end %>
+	      	</tbody>
+    	</table> 
+    </div>
+	    <% else %>	
+	    	<p class="lead col-md-12">No images match this search </p>
+	    <% end %>   
+      <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_image_path,
+            :class => 'btn btn-primary' %>	
+      <%= link_to "All Images", "/images", :class => 'btn btn-info'  %>      		
+  <div id="image-lookup-errors"></div>
+</div>

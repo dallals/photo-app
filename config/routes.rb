@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "login", to: 'freeusers#new'
   post "login", to: 'freeusers#login'
   post 'logout', to: 'freeusers#logout'
+  post 'search_images', to: "images#search"
 
   root 'welcome#index'
 

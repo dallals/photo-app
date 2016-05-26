@@ -7,8 +7,7 @@
 <table class="table table-striped">
   <thead>
   
-    <tr>
-      
+    <tr>  
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:picture) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -22,7 +21,7 @@
   </div>  
     <% @images.each do |image| %>
       <% if current_user == image.user || current_user.admin %>
-        <tr>
+        <tr id="image-lookup">
           <td><h4><%= link_to image.name, image_path(image) %></h4></td>
           <td><%= image_tag image.picture.url, width: "100" %></td>
           <td><%= time_ago_in_words(image.created_at) %></td>
@@ -48,3 +47,4 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_image_path,
             :class => 'btn btn-primary' %>
+           

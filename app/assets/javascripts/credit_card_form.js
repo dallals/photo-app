@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	console.log('is this being loaded')
 	var show_error, stripeResponseHandler, submitHandler;
 
 	submitHandler= function(event){
