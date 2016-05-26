@@ -140,7 +140,20 @@ ul {
 
 	} */
 
+
 }
+
+	#welcome_background {
+		background-image: asset-url('volcanopark-03.jpg');
+		background-size: cover;
+		height: 750px;
+		/*width: 100%*/
+		/*max-width: 100%;
+    	height: auto;*/
+
+}
+
+
 	.no-left-padding {
 	padding-left: 0 !important;
 }

@@ -9,6 +9,7 @@ def create
 		resource.save 
 		yield resource if block_given?
 		if resource.persisted?
+			if current_user
 			@payment = Payment.new({email: params["user"]["email"], token: params[:payment]["token"], user_id: resource.id })
 			flash[:error] ="Please check registration errors" unless @payment.valid?
 
@@ -21,7 +22,7 @@ def create
 				# resource.destroy
 				# puts 'Payment failed'
 				# render :new and return
-				
+			end
 			end
 			
 			if resource.active_for_authentication?

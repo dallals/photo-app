@@ -51,6 +51,11 @@
           <% if current_user %>
             <li><%= link_to "Images", "/images"  %></li>
             <li><%= link_to "Edit your profile", "/users/edit"  %></li>
+            <% if current_user.admin %>
+              <li style="margin-top: 16px; color: darkred; font-weight: bold;"><p>Logged in as Admin</p></li>
+            <% else %>
+              <li style="margin-top: 16px; color: lightblue; font-weight: bold; font-style: italic;"><p>Logged in User</p></li>
+            <% end %>  
           <% end %>  
           </ul>
           <ul class="nav navbar-right col-md-4">

@@ -17,6 +17,9 @@
     </tr>
   </thead>
   <tbody>
+  <div align="center" style="font-size: 16px;">
+    <%= will_paginate %>
+  </div>  
     <% @images.each do |image| %>
       <% if current_user == image.user || current_user.admin %>
         <tr>
@@ -33,12 +36,14 @@
                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                         :class => 'btn btn-xs btn-danger' %>
           </td>
-        </tr>
-        <% end %>
+        </tr> 
+        <% end %>   
     <% end %>
-   
   </tbody>
 </table>
+  <div align="center" style="font-size: 16px;">
+    <%= will_paginate %>
+  </div> 
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_image_path,

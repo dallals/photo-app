@@ -1,10 +1,13 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_user
 
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    # @images = Image.all
+    @images = Image.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)
   end
 
   # GET /images/1
@@ -72,4 +75,11 @@ class ImagesController < ApplicationController
     def image_params
       params.require(:image).permit(:name, :caption, :picture, :user_id, :credit)
     end
+
+    def require_same_user
+      if current_user.id != @image.user_id and !current_user.admin?
+        flash[:danger] = "You can only edit or delete your own photos"
+        redirect_to root_path
+      end
+  end
 end

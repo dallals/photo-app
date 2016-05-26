@@ -24,6 +24,7 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
+      <% if current_user %>
       <%= fields_for( :payment ) do |p| %>
         <div class="row col-md-12 no-left-padding">
           <div class="form-group col-md-4">
@@ -46,7 +47,8 @@
               <%= p.select :card_expires_year, options_for_select(Payment.year_options.push), { include_blank: 'Year' }, class: "form-control", data: { stripe: "exp-year" }, required: true %>
             </div>   
          </div> 
-        </div>   
+        </div> 
+        <% end %>  
       <% end %>
       <div class="form-group row-md-2 signup">
         <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %> 
