@@ -18,9 +18,10 @@ def create
 			rescue Exception => e
 				flash[:error] = e.message
 
-				resource.destroy
-				puts 'Payment failed'
-				render :new and return
+				# resource.destroy
+				# puts 'Payment failed'
+				# render :new and return
+				
 			end
 			
 			if resource.active_for_authentication?
@@ -45,6 +46,6 @@ end
 protected
 
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.for(:sign_up).push(:payment)
+		devise_parameter_sanitizer.for(:sign_up?).push(:payment)
 	end
 end

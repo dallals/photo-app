@@ -7,11 +7,12 @@
 
 <dl class="dl-horizontal">
 
-    <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+    <dt><strong><%= model_class.human_attribute_name(:Title) %>:</strong></dt>
     <p><dd><%= @image.name %></dd></p>
     <dt></dt>
     <dd><%= image_tag(@image.picture.url, width: "800") if @image.picture? %></dd>
-    <p><dd><%= @image.caption %></p></dd></p>
+    <p><dd><%= @image.caption %> <p style="font-weight: bold"> Photo by: <%= @image.credit %></p></p></dd></p>
+
   
 </dl>
 <div align="center">
