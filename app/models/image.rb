@@ -9,7 +9,7 @@ class Image < ActiveRecord::Base
   	return Image.none if param.blank?
   	param.strip!
   	param.downcase!
-  	name_matches(param).uniq 
+  	(name_matches(param) + caption_matches(param) + credit_matches(param)).uniq 
   	# caption_matches(param).uniq 
   	# credit_matches(param)
   	
