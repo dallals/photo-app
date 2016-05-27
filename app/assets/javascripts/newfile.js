@@ -23,9 +23,24 @@ $(document).ready(function(){
 		
 			
 	})
-
 	
-		$('#slideshowHolder').jqFancyTransitions({ width: 700, height: 450});
+            $(function(){
+              $("#main_body").slidesjs({
+                width: 1100,
+                height: 700,
+                play: {
+                    active: false,
+                    effect: "slide",
+                    interval: 3000,
+                    auto: true,
+                    pauseOnHover: true,
+                    restartDelay: 2500,
+                },
+                navigation: false,
+                pagination: false        
+              });
+            });
+         
 	
 
 	// init_image_lookup = function(){
