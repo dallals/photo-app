@@ -1,0 +1,2 @@
+export STRIPE_TEST_SECRET_KEY=sk_test_AkjvDFIdmQl5i6QiRVLNVwDc
+export STRIPE_TEST_PUBLISHABLE_KEY=pk_test_enCWKRnhWni6ogHcsJffmDo6

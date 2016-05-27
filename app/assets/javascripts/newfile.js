@@ -20,7 +20,13 @@ $(document).ready(function(){
 			$('#image-lookup-errors').replaceWith('Image was not found');
 		})
 		return false;
+		
+			
 	})
+
+	
+		$('#slideshowHolder').jqFancyTransitions({ width: 700, height: 450});
+	
 
 	// init_image_lookup = function(){
 
