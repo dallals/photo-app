@@ -20,8 +20,8 @@ class AlbumsController < ApplicationController
 	end
 
   	def create
-  		@album = Album.new(album_params)
-  		@album.user_id = current_user.id 
+  		@album = Album.create album_params
+  		# @album.user_id = current_user.id 
   		if @album.save
   			flash[:success] = "You have created a new Album"
   			redirect_to images_path(current_user)
@@ -50,7 +50,7 @@ class AlbumsController < ApplicationController
   private
 
   	def album_params
-    	params.require(:album).permit(:name)
+    	params.require(:album).permit(:name).merge(user: current_user)
   	end
 
   	def set_album
