@@ -1,0 +1,20 @@
+<h1 align="center">Listing all Albums</h1>
+
+<div align="center">
+	<%= will_paginate %>
+	<% @albums.each do |album| %>
+	<% if current_user.id == album.user_id || current_user.admin?%>
+		<ul class="listing">
+			<div class="row">
+				<div class="well col-md-4 col-md-offset-4">
+					<li class="article-title">
+						<%= link_to "#{album.name}", album_path(album) %>
+					</li>
+					<li><small><%= pluralize(album.images.count, "images") %></small></li>
+				</div>		
+			</div>
+		</ul>
+		<% end %>
+	<% end %>
+	<%= will_paginate %>
+ </div>		

@@ -51,6 +51,21 @@
           <% if current_user %>
             <li><%= link_to "Images", "/images"  %></li>
             <li><%= link_to "Edit your profile", "/users/edit"  %></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Albums <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><%= link_to "All Albums", albums_path %></li>
+                    <% Album.all.each do |album| %>
+                    <% if current_user.id == album.user_id || current_user.admin? %>
+                    <li><%= link_to "#{album.name}", album_path(album) %></li>
+                    <% end %>
+                  <% end %>
+            <% if current_user %>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Create new Album", new_album_path %></li>
+            <% end %>
+          </ul>
+        </li> 
             <% if current_user.admin %>
               <li style="margin-top: 16px; color: darkred; font-weight: bold;"><p>Logged in as Admin</p></li>
             <% else %>
@@ -82,7 +97,7 @@
       </div><!--/row-->
 
       <footer>
-        <p style="margin-left: 290px; margin-top: 20px; ">&copy; Sammy Dallal</p>
+        </br><p>&copy; Sammy Dallal</p>
       </footer>
 
     </div> <!-- /container -->

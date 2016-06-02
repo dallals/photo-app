@@ -6,8 +6,8 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    # @images = Image.all
-    @images = Image.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)
+    @images = Image.all.order(updated_at: :desc)
+    # @images = Image.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)
   end
 
   # GET /images/1
@@ -18,6 +18,7 @@ class ImagesController < ApplicationController
   # GET /images/new
   def new
     @image = Image.new
+    @album = Album.all
   end
 
   # GET /images/1/edit
@@ -29,6 +30,8 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     @image.user = current_user
+    # @album = Album.all
+    # @image.album_id = @album.id
 
     respond_to do |format|
       if @image.save
@@ -84,7 +87,7 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params.require(:image).permit(:name, :caption, :picture, :user_id, :credit)
+      params.require(:image).permit(:name, :caption, :picture, :user_id, :credit, album_ids: [])
     end
 
     def require_same_user

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :images
-  resources :freeusers
+  # resources :freeusers
+  resources :albums
   devise_for :users, :controllers => { :registrations => 'registrations'}
   
   get "login", to: 'freeusers#new'
