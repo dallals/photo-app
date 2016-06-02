@@ -15,6 +15,7 @@
     </div>
   </div>
   <% end %>
+
   	<% if @images.size > 0 %>
     	<div id="image-lookup-results">
 	    	<table class="search-results-table col-md-12 table table-striped">
@@ -31,8 +32,9 @@
         <div align="center" style="font-size: 16px;">
       </div>  
 	    		<tbody>
+
 	    			<% @images.each do |image| %>
-            <% if current_user == image.user || current_user.admin %>
+              <% if current_user == image.user || current_user.admin %>
 	    			<tr>
 	    				  <td><h4><%= link_to image.name, image_path(image) %></h4></td>
                 <td><strong><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td><strong>
@@ -49,6 +51,7 @@
                 </td>
 	        		</tr>	 	
 	      		<% end %>
+            
             <% end %>
 	      	</tbody>
     	</table> 
