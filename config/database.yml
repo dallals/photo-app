@@ -24,5 +24,6 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: photoApp
   username: ubuntu
