@@ -23,6 +23,7 @@ class ImagesController < ApplicationController
 
   # GET /images/1/edit
   def edit
+    @album = Album.all
   end
 
   # POST /images
