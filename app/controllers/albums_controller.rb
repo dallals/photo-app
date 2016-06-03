@@ -16,7 +16,8 @@ class AlbumsController < ApplicationController
 
 	def show
 		@album = Album.find(params[:id])
-		@image_albums = @album.images.paginate(page: params[:page], per_page: 5).order(updated_at: :desc)
+		# @image_albums = @album.images.paginate(page: params[:page], per_page: 5).order(updated_at: :desc)
+    @image_albums = @album.images.all.order(updated_at: :desc)
 	end
 
   	def create
@@ -62,7 +63,12 @@ class AlbumsController < ApplicationController
         flash[:danger] = "You can only edit or delete your own albums"
         redirect_to root_path
       end
-  end
+    end
+
+    # def unique_album_name
+    #   if @album.name and @album.user_id == current_user.id
+    #   end
+    # end
 
 
 end

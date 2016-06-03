@@ -41,6 +41,7 @@
         </thead>
         <tbody>
         	<% @image_albums.each do |photo| %>
+        	
         	<tr>
         		<td><%= photo.name %></td>
         		<td><strong><a href="/images/<%= photo.id %>"><%= image_tag photo.picture.url, width: "100" %></a></td></strong>
@@ -51,6 +52,7 @@
 				<%= link_to 'Delete', image_path(photo), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></td>
 				<% end %> 
 				<% end %> 
+			
         	</tr>
         	
         </tbody>
