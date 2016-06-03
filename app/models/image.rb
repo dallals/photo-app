@@ -9,7 +9,7 @@ class Image < ActiveRecord::Base
 
 
   def self.search(param)
-  	return Image.none if param.blank?
+  	return Image.all if param.blank?
   	param.strip!
   	param.downcase!
   	(name_matches(param) + caption_matches(param) + credit_matches(param)).uniq 
