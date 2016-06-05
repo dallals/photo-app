@@ -5,8 +5,8 @@ class AlbumsController < ApplicationController
  	before_action :require_same_user, only: [:edit, :update, :destroy]
 
   	def index
-  		# @albums = Album.all
-  		@albums = Album.paginate(page: params[:page], per_page: 5)
+  		@albums = Album.all
+  		# @albums = Album.paginate(page: params[:page], per_page: 5).order(name: :asc)
   		@images = Image.all
   	end
 
@@ -65,10 +65,10 @@ class AlbumsController < ApplicationController
       end
     end
 
-    # def unique_album_name
-    #   if @album.name and @album.user_id == current_user.id
-    #   end
-    # end
+    def unique_album_name
+      if @album.name  == Album.find_by(name: "@album.name")
+      end
+    end
 
 
 end
