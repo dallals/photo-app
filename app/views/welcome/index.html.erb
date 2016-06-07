@@ -25,7 +25,7 @@
 	
 
 
-		<% @images.take(12).each do |image| %>
+		<% @images.take(8).each do |image| %>
 			<% if current_user.id == image.user.id || current_user.admin? %>
 			<div class="col-sm-12 col-md-3" style="margin-top: 10px;">
 				<div class="thumbnail" style="height: 240px;">
