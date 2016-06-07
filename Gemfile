@@ -32,6 +32,7 @@ gem 'figaro'
 gem 'will_paginate', '3.0.7'
 gem 'table_print'
 gem 'instagram'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

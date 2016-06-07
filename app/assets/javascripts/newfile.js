@@ -30,7 +30,7 @@ $(document).ready(function(){
                 height: 700,
                 play: {
                     active: false,
-                    effect: "slide",
+                    effect: "fade",
                     interval: 3000,
                     auto: true,
                     pauseOnHover: true,
