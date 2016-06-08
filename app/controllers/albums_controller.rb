@@ -43,6 +43,7 @@ class AlbumsController < ApplicationController
   			flash[:success] = "Album was successfully updated"
   			redirect_to album_path(@album)
   		else
+        flash[:danger] = "Album name must be at least 3 characters long or a maximum of 25 characters long"
   			redirect_to :back
   		end
   	end
