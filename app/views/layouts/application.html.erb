@@ -65,6 +65,7 @@
             <% end %>
           </ul>
         </li> 
+            <li><%= link_to "Upload Image", "/images/new" %></li>
             <li><%= link_to "Edit your profile", "/users/edit"  %></li>
             <% if current_user.admin %>
               <li style="margin-top: 16px; color: darkred; font-weight: bold;"><p>Logged in as Admin</p></li>
