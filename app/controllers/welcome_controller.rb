@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
   def index
   	# @instagram = Instagram.media_popular
   	# @instagram = Instagram.user_recent_media(9326124, {:count => 18})
-  	@images = Image.all.order(updated_at: :desc)
+  	@images = Image.all.order(created_at: :desc)
   	# @images = Image.find(current_user.id).order(updated_at: :desc)
 
   end
