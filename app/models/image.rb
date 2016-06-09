@@ -35,9 +35,6 @@ class Image < ActiveRecord::Base
     where("lower(#{field_name}) like ?", "%#{param}%")
   end
 
-
-
-
 	private
 
 	def picture_size

@@ -19,9 +19,7 @@ $(document).ready(function(){
 			$('#image-lookup-results').replaceWith('');
 			$('#image-lookup-errors').replaceWith('Image was not found');
 		})
-		return false;
-		
-			
+		return false;			
 	})
 	
             $(function(){
@@ -37,7 +35,7 @@ $(document).ready(function(){
                     restartDelay: 2500,
                 },
                 navigation: false,
-                pagination: false        
+                pagination: false     
               });
             });
          

@@ -7,15 +7,14 @@
 	<div id="main_body">
 <!-- 			<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/1011.JPG">-->
             <% @images.take(8).each do |image| %>
-            	<% if current_user.id == image.user_id && image.user_id.size > 1 || current_user.admin? %>
+            	<% if (current_user.id == image.user_id && @images.size >= 2) || current_user.admin? %>
             		<a href="/images/"><%= image_tag image.picture.url, width: "1140" %></a>
-            	<% end %>
-            
-            	<% if image.user_id.size < 2 %>
+            	<% else %>
 	            	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/1011.JPG">
 	            	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/2009.JPG">
-            	<% end %>
-            	<% end %>
+	            	<h3>Upload a couple of images to have them displayed</h3>
+            	<% end %> 	
+            <% end %>
         </div> 
 	</div>
 	
