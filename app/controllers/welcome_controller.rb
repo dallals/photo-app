@@ -7,6 +7,6 @@ class WelcomeController < ApplicationController
   	# @images = Image.joins(:user).where(:users => {:user_id => current_user.id })
   	# @images = Image.find(current_user.id).order(updated_at: :desc)
   	# @comments = Comment.joins(:post).where(:posts => { :user_id => @user.id })
-  	@images = Image.where(user_id: current_user)
+  	@images = Image.where(user_id: current_user).order(updated_at: :desc)
   end
 end
