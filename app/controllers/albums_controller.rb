@@ -18,7 +18,7 @@ class AlbumsController < ApplicationController
 		@album = Album.find(params[:id])
 		# @image_albums = @album.images.paginate(page: params[:page], per_page: 5).order(updated_at: :desc)
     	@image_albums = @album.images.all.order(updated_at: :desc)
-    	@id = User.find(@album.user_id)
+    	@id = User.find(@album.user_id) # in view page you can use User.find(@album.user_id).email 
 	end
 
 	def create
@@ -44,7 +44,7 @@ class AlbumsController < ApplicationController
 			flash[:success] = "Album was successfully updated"
 			redirect_to album_path(@album)
 		else
-      flash[:danger] = "Album name must be at least 3 characters long or a maximum of 25 characters long"
+      		flash[:danger] = "Album name must be at least 3 characters long or a maximum of 25 characters long"
 			redirect_to :back
 		end
 	end

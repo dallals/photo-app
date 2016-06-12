@@ -2,7 +2,7 @@
 
 <h1 align="left"> <%= "Album: " + @album.name %></h1>
 <% if current_user.admin? %> 
-  <p style="font-weight: bold; color: red;">This Album Belongs to: <%= @id.email %> </p>
+  <p style="font-weight: bold; color: darkred;">This Album Belongs to: <%= @id.email %> </p>
 <% end %>  
 
 <div align="right" style="margin-top: -30px;"> 
@@ -49,7 +49,7 @@
         		<td><%= photo.name %></td>
         		<td><strong><a href="/images/<%= photo.id %>"><%= image_tag photo.picture.url, width: "100" %></a></td></strong>
         		<td><%= photo.credit %></td>
-        		<% if logged_in? && (current_user.id == photo.user_id || current_user.admin?) %>
+        		<% if (logged_in? && current_user.id == photo.user_id) || current_user.admin? %>
 
 				<td><%= link_to "edit this photo", edit_image_path(photo), class: "btn btn-xs btn-primary" %>
 				<%= link_to 'Delete', image_path(photo), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></td>
