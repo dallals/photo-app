@@ -26,6 +26,9 @@
             <th><%= model_class.human_attribute_name(:updated_at) %></th>
             <th><%= model_class.human_attribute_name(:Photo_by) %></th>
             <th><%=t '.actions', :default => t("helpers.actions") %></th>
+            <% if current_user.admin? %>
+            <th style="color: darkred;"> Image owner (Admin Access)</th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
@@ -36,7 +39,7 @@
 	    			<% @images.each do |image| %>
               <% if current_user == image.user || current_user.admin %>
 	    			<tr>
-	    				  <td><h4><%= link_to image.name, image_path(image) %></h4></td>
+	    				  <td><p><%= link_to image.name, image_path(image) %></p></td>
                 <td><strong><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td><strong>
 					      <td><strong></strong><%= time_ago_in_words (image.updated_at) %> ago</td>
 					      <td><strong></strong><%= image.credit %></td>
@@ -49,6 +52,9 @@
                               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                               :class => 'btn btn-xs btn-danger' %>
                 </td>
+                <% if current_user.admin? %>
+                <td style="color: darkred;"><%= User.find(image.user_id).email %></td>
+                <% end %>
 	        		</tr>	 	
 	      		<% end %>
             
