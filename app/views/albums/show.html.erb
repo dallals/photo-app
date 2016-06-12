@@ -1,6 +1,9 @@
 <%- model_class = Image -%>
 
 <h1 align="left"> <%= "Album: " + @album.name %></h1>
+<% if current_user.admin? %> 
+  <p style="font-weight: bold; color: red;">This Album Belongs to: <%= @id.email %> </p>
+<% end %>  
 
 <div align="right" style="margin-top: -30px;"> 
 	<% if current_user || current_user.admin? %>

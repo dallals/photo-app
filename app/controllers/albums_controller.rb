@@ -17,7 +17,8 @@ class AlbumsController < ApplicationController
 	def show
 		@album = Album.find(params[:id])
 		# @image_albums = @album.images.paginate(page: params[:page], per_page: 5).order(updated_at: :desc)
-    @image_albums = @album.images.all.order(updated_at: :desc)
+    	@image_albums = @album.images.all.order(updated_at: :desc)
+    	@id = User.find(@album.user_id)
 	end
 
 	def create

@@ -13,6 +13,7 @@ class ImagesController < ApplicationController
   # GET /images/1
   # GET /images/1.json
   def show
+    @id = User.find(@image.user_id)
   end
 
   # GET /images/new

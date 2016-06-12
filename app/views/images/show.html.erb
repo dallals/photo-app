@@ -3,6 +3,9 @@
  
 <div class="page-header">
   <h1><%= @image.name %></h1>
+  <% if current_user.admin? %>  
+    <p style="font-weight: bold; color: darkred;">This Photo Belongs to: <%= @id.email %> </p>
+  <% end %>
   <div style="margin-top: -40px;" align="right">
   <%= link_to t('.back', :default => t("helpers.links.back")),
                 images_path, :class => 'btn btn-info'  %>
