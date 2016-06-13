@@ -75,8 +75,13 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
               <ul class="dropdown-menu">
                     <% User.all.each do |user| %>
-                    <li><%= link_to "#{user.email}", freeuser_path(user) %>
+                    <li>
+                      <% if user.admin? %>
+                        <%= link_to "Admin User: " + "#{user.email}", freeuser_path(user)%>
+                      <% else %>
+                      <%= link_to "#{user.email}", freeuser_path(user)%>
                     </li>
+                    <% end %>
                   <% end %>
             <% else %>      
             <li><%= link_to "Edit your profile", "/users/edit"  %></li>
