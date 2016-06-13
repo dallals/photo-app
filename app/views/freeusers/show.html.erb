@@ -1,6 +1,41 @@
 <h3 align="center"> <%= "Delete User: " + @user.email %></h3>
 
 
-<div class="row" align="center">
+<div class="col-xl-5 col-xs-offset-9" style="margin-top: -30px;">
 	<%= link_to "Delete User", freeuser_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete this User?" }, class: "btn btn-xs btn-danger" %>
 </div>
+
+<%- model_class = Image -%>
+		<table class="search-results-table col-md-12 table table-striped">
+        <thead>
+          <tr>  
+            <th><%= model_class.human_attribute_name(:title) %></th>
+            <th><%= model_class.human_attribute_name(:picture) %></th>
+            <th><%= model_class.human_attribute_name(:updated_at) %></th>
+            <th><%= model_class.human_attribute_name(:Photo_by) %></th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+
+          </tr>
+        </thead>
+        <div align="center" style="font-size: 16px;">
+      </div>  
+	    		<tbody>
+
+	    			<% @images.each do |image| %>
+              		<% if @user == image.user  %>
+	    			<tr>
+	    				  <td><p><%= link_to image.name, image_path(image) %></p></td>
+	            		  <td><strong><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td><strong>
+					      <td><strong></strong><%= time_ago_in_words (image.updated_at) %> ago</td>
+					      <td><strong></strong><%= image.credit %></td>
+			            <% if current_user.admin? %>
+			                <td style="color: darkred;"><%= User.find(image.user_id).email %></td>
+			            <% end %>
+	        		</tr>	 	
+	      		<% end %>
+            
+            <% end %>
+	      	</tbody>
+    	</table> 
+    </div>
+	     		
