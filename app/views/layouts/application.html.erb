@@ -75,7 +75,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
               <ul class="dropdown-menu">
                     <% User.all.each do |user| %>
-                    <li><%= link_to "#{user.email}", edit_user_registration_path(user) %>
+                    <li><%= link_to "#{user.email}", freeuser_path(user) %>
                     </li>
                   <% end %>
             <% else %>      
