@@ -24,9 +24,14 @@ class FreeusersController < ApplicationController
     end
 
 	def destroy
+		if !@user.admin?
 	  	@user.destroy
-	  	flash[:danger] = "User and all posts by user have been deleted"
+	  	flash[:danger] = "User and all images and albums have been deleted"
 	  	redirect_to root_path
+	  else
+	  	flash[:danger] = "You can not delete an Admin account"
+	  	redirect_to :back
+	  end
   	end
 
 
@@ -66,7 +71,7 @@ class FreeusersController < ApplicationController
 	end
 
 	def set_user
-		@user = Freeuser.find(params[:id])
+		@user = User.find(params[:id])
 	end
 
 	# def current_user

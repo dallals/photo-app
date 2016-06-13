@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   resources :images
-  # resources :freeusers
+  resources :freeusers, only: [:show, :destroy]
   resources :albums
   devise_for :users, :controllers => { :registrations => 'registrations'}
   
-  get "login", to: 'freeusers#new'
-  post "login", to: 'freeusers#login'
-  post 'logout', to: 'freeusers#logout'
+  # get "login", to: 'freeusers#new'
+  # post "login", to: 'freeusers#login'
+  # post 'logout', to: 'freeusers#logout'
   post 'search_images', to: "images#search"
+  # get 'freeuser', to: "freeusers#show"
+  # post 'delete_freeuser', to: "freeuser#destroy"
   # get 'user/edit/:id', to: "registrations#edit"
 
   root 'welcome#index'
