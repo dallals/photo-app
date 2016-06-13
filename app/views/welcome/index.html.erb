@@ -5,23 +5,26 @@
 	<h1 align="center"> Welcome to the Photo Managment App!</h1>
 	<!-- <div id="welcome_background"> -->
 	<div id="main_body">
-		<% if @images.size == 0 %>
-			<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/1011.JPG">
+
+
+	    <% if @images.size < 2 %> 
+	    	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/1011.JPG">
 			<h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
 			<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/2009.JPG">
 	        <h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
-	    <% end %>    
-
-            <% @images.take(8).each do |image| %>
-            	<% if (current_user.id == image.user_id && @images.size >= 2) || current_user.admin? %>
-            		<a href="/images/"><%= image_tag image.picture.url, width: "1140" %></a>
-            	<% else %>
-            		<h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
-	            	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/1011.JPG">
-	            	<h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
-	            	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/2009.JPG">
-            	<% end %> 	
-            <% end %>
+	    <% end %>
+	    	<% if @images.size >= 2 %>
+	            <% @images.take(8).each do |image| %>
+	            	<% if (current_user.id == image.user_id && @images.size >= 2) || current_user.admin? %>
+	            		<a href="/images/"><%= image_tag image.picture.url, width: "1140" %></a>
+	            	<% else %>
+	            		<h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
+		            	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/1011.JPG">
+		            	<h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
+		            	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/2009.JPG">
+	            	<% end %> 	
+	            <% end %>
+	        <% end %>    
         </div> 
 	</div>
 	
