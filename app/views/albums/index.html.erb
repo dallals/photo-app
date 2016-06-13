@@ -11,6 +11,9 @@
 							<h3><%= link_to "#{album.name}", album_path(album) %></h3>
 						</li>
 						<li><small><%= pluralize(album.images.count, "images") %></small></li>
+						<% if current_user.admin %>
+							<li><small style="font-weight: bold; color: darkred;">Album Owner: <%= User.find(album.user_id).email %></small></li>
+						<% end %>
 					</div>		
 				</div>
 			</ul>

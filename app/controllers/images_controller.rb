@@ -6,8 +6,12 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all.order(updated_at: :desc)
+    if current_user.admin?
+      @images = Image.all.order(:user_id)
+    else
+      @images = Image.all.order(updated_at: :desc)
     # @images = Image.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)
+    end
   end
 
   # GET /images/1
@@ -65,7 +69,7 @@ class ImagesController < ApplicationController
 
   def search
     @images = Image.search(params[:search_param])
-    puts @images
+    # puts @images
     if @images
       # @users = current_user.except_current_user(@users)
       render partial: "lookup"

@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_one :payment
   accepts_nested_attributes_for :payment
-  has_many :images
-  has_many :albums
+  has_many :images, dependent: :destroy
+  has_many :albums, dependent: :destroy
 end
