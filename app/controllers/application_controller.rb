@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
   		redirect_to :back
   	end
   end
-
+  def super_user
+    @super_user = User.find(1)
+  end
 
 end

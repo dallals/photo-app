@@ -1,9 +1,9 @@
 class AlbumsController < ApplicationController
 	# before_action :require_same_user, only: [:edit, :update, :destroy, :index]
  #  	before_action :require_user
- 	before_action :set_album, only: [:edit, :update, :destroy, :require_same_user]
- 	before_action :require_same_user, only: [:edit, :update, :destroy]
-
+ 	before_action :set_album, only: [:edit, :update, :destroy, :show]
+ 	before_action :require_same_user, only: [:edit, :update, :destroy, :show]
+ 	# before_action :check_user, only: [:show]
 	def index
 		if current_user.admin?
 			@albums = Album.all.order(user_id: :desc)
@@ -67,9 +67,10 @@ class AlbumsController < ApplicationController
   	def require_same_user
       if current_user.id != @album.user_id and !current_user.admin?
         flash[:danger] = "You can only edit or delete your own albums"
-        redirect_to root_path
+        redirect_to images_path
       end
     end
+
 
     def unique_album_name
       if @album.name  == Album.find_by(name: "@album.name")

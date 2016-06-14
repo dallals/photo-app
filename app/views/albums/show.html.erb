@@ -53,7 +53,7 @@
     				  <td><%= link_to "edit this photo", edit_image_path(photo), class: "btn btn-xs btn-primary" %>
     				<%= link_to 'Delete', image_path(photo), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></td>
             <% else %>
-              <td>Admin log in as: <br><p style="color: darkred;"><%= User.find(photo.user_id).email %></p> <td>
+              <td>Admin Account Locked: <br><p style="color: darkred;"><%= User.find(photo.user_id).email %></p> <td>
 				<% end %> 
 				<% end %> 
 			
