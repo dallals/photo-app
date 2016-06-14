@@ -17,17 +17,7 @@ class FreeusersController < ApplicationController
 	  	flash[:danger] = "You can not delete an Admin account"
 	  	redirect_to :back
 	  end
-  	end
-
-
-	def update
-	  if @user.update(user_params)
-	  flash[:success] = "Account Updated"
-	  	redirect_to freeusers_path
-	  else
-	  	render :back
-	  	end		
-	end  
+  	end 
 
 	# def login
 	# 	user = Finduser.find_by(email:params[:session][:email].downcase)
@@ -50,8 +40,5 @@ class FreeusersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
-	# def current_user
-	# 	current_user = Freeuser.find(params[:id])
-	# end
 
 end

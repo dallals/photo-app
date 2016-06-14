@@ -1,7 +1,7 @@
 <h3 align="center"> <%= "User: " + @user.email %></h3>
 
 <% if !@user.admin? %>
-	<div class="col-xl-5 col-xs-offset-9" style="margin-top: -50px;">
+	<div class="col-xl-5 col-xs-offset-9" style="margin-top: -50px; padding-bottom: 10px;">
 		<%= link_to "Delete User", freeuser_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete this User?" }, class: "btn btn-lg btn-danger" %>
 	</div>
 <% end %>
@@ -14,7 +14,7 @@
             <th><%= model_class.human_attribute_name(:picture) %></th>
             <th><%= model_class.human_attribute_name(:updated_at) %></th>
             <th><%= model_class.human_attribute_name(:Photo_by) %></th>
-            <th><%=t '.actions', :default => t("helpers.actions") %></th>
+            <th>Action</th>
 
           </tr>
         </thead>
@@ -29,9 +29,20 @@
 	            		  <td><strong><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td><strong>
 					      <td><strong></strong><%= time_ago_in_words (image.updated_at) %> ago</td>
 					      <td><strong></strong><%= image.credit %></td>
-			            <% if current_user.admin? %>
-			                <td style="color: darkred;"><%= User.find(image.user_id).email %></td>
-			            <% end %>
+					      <% if !@user.admin? || current_user == @user %>
+					      <td> 
+			                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+			                              edit_image_path(image), :class => 'btn-xs btn-info btn' %>
+			                  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			                              image_path(image),
+			                              :method => :delete,
+			                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+			                              :class => 'btn btn-xs btn-danger' %>
+                		  </td>
+                		  <% else %>
+                		  <td><p style="color: darkred;">Admin Account Locked</p><td>
+                		  <% end %>
+			              
 	        		</tr>	 	
 	      		<% end %>
             
