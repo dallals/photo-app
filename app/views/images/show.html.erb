@@ -9,6 +9,7 @@
   <div style="margin-top: -40px;" align="right">
   <%= link_to t('.back', :default => t("helpers.links.back")),
                 images_path, :class => 'btn btn-info'  %>
+  <% if !@id.admin? || current_user == @id %>              
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
                 edit_image_path(@image), :class => 'btn btn-success' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -16,6 +17,9 @@
                 :method => 'delete',
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                 :class => 'btn btn-danger' %>
+           
+  <% end %> 
+               
 </div>
 </div>
 

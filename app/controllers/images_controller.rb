@@ -6,6 +6,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
+    @user = User.all
     if current_user.admin?
       @images = Image.all.order(:user_id)
     else
