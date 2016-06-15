@@ -57,9 +57,9 @@
                     <% Album.all.each do |album| %>
                     <% if current_user.id == album.user_id || current_user.admin? %>
                     <li><%= link_to "#{album.name}", album_path(album) %>
-                      <% if current_user.admin? %>
+<!--                       <% if current_user.admin? %>
                         <p style="display: inline-block; color: darkred; margin-left: 8px;"><%= User.find(album.user_id).email %></p>
-                      <% end %>
+                      <% end %> -->
                     </li>
                     <% end %>
                   <% end %>
