@@ -19,7 +19,6 @@ class AlbumsController < ApplicationController
   end
 
 	def show
-		@album = Album.find(params[:id])
 		# @image_albums = @album.images.paginate(page: params[:page], per_page: 5).order(updated_at: :desc)
     	@image_albums = @album.images.all.order(updated_at: :desc)
     	@id = User.find(@album.user_id) # in view page you can use User.find(@album.user_id).email 
@@ -61,7 +60,7 @@ class AlbumsController < ApplicationController
   	end
 
   	def set_album
-  		@album = Album.find(params[:id])
+  		 @album = Album.find(params[:id])
     end
 
   	def require_same_user
