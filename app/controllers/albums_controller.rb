@@ -1,9 +1,7 @@
 class AlbumsController < ApplicationController
-	# before_action :require_same_user, only: [:edit, :update, :destroy, :index]
- #  	before_action :require_user
  	before_action :set_album, only: [:edit, :update, :destroy, :show]
  	before_action :require_same_user, only: [:edit, :update, :destroy, :show]
- 	# before_action :check_user, only: [:show]
+	
 	def index
 		if current_user.admin?
 			@albums = Album.all.order(user_id: :desc)
@@ -29,7 +27,7 @@ class AlbumsController < ApplicationController
 		# @album.user_id = current_user.id 
 		if @album.save
 			flash[:success] = "You have created a new Album"
-			redirect_to images_path(current_user)
+			redirect_to albums_path(current_user)
 		else
 			flash[:danger] = "Album was not created please try again"
 			redirect_to :back
