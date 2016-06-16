@@ -103,8 +103,8 @@ class ImagesController < ApplicationController
 
     def require_same_user
       if current_user.id != @image.user_id and !current_user.admin?
-        flash[:danger] = "You can only edit or delete your own photos"
-        redirect_to root_path
+        flash[:danger] = "You can only view, edit or delete your own photos"
+        redirect_to images_path
       end
   end
 end
