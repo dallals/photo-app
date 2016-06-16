@@ -63,8 +63,8 @@ class AlbumsController < ApplicationController
 
   	def require_same_user
       if current_user.id != @album.user_id and !current_user.admin?
-        flash[:danger] = "You can only edit or delete your own albums"
-        redirect_to images_path
+        flash[:danger] = "You can only view, edit or delete your own albums"
+        redirect_to albums_path
       end
     end
 
