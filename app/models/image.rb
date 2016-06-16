@@ -8,6 +8,19 @@ class Image < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3, maximum: 30 }
   validate :picture_size
 
+  LIMIT = 20
+
+  validate do |record|
+    record.validate_photo_quota
+  end
+
+  def validate_photo_quota
+    return unless self.user
+    if self.user.images(:reload).count >= LIMIT
+      errors.add(:base, :exceeded_quota)
+    end
+  end
+
 
   def self.search(param)
   	return Image.all if param.blank?

@@ -49,6 +49,7 @@ class ImagesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @image.errors, status: :unprocessable_entity }
+        flash[:danger] = "You have exceeded the maximum number of photos you can upload."
       end
     end
   end
