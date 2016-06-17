@@ -34,8 +34,8 @@ $(document).ready(function(){
                     pauseOnHover: true,
                     restartDelay: 2500,
                 },
-                navigation: false,
-                pagination: false     
+                navigation: true,
+                pagination: true     
               });
             });
          

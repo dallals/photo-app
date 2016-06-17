@@ -69,10 +69,10 @@ class AlbumsController < ApplicationController
     end
 
 
-    def unique_album_name
-      if @album.name  == Album.find_by(name: "@album.name")
-      end
-    end
+    # def unique_album_name
+    #   if @album.name  == Album.find_by(name: "@album.name")
+    #   end
+    # end
 
 
 end

@@ -36,34 +36,31 @@
 <div align="center">
 	<div id="image-lookup-results">
 	    	<table class="search-results-table col-md-12 table table-striped">
-        <thead>
-          <tr>  
-            <th><%= model_class.human_attribute_name(:name) %></th>
-            <th><%= model_class.human_attribute_name(:picture) %></th>
-            <th><%= model_class.human_attribute_name(:Photo_by) %></th>
-            <th><%=t '.actions', :default => t("helpers.actions") %></th>
-          </tr>
-        </thead>
-        <tbody>
-        	<% @image_albums.each do |photo| %>
-        	
-        	<tr>
-        		<td><%= photo.name %></td>
-        		<td><strong><a href="/images/<%= photo.id %>"><%= image_tag photo.picture.url, width: "100" %></a></td></strong>
-        		<td><%= photo.credit %></td>
-        		<% if current_user.id == photo.user_id || !@id.admin? %>
-    				  <td><%= link_to "edit this photo", edit_image_path(photo), class: "btn btn-xs btn-primary" %>
-    				<%= link_to 'Delete', image_path(photo), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></td>
-            <% else %>
-              <td>Admin Account Locked: <br><p style="color: darkred;"><%= User.find(photo.user_id).email %></p> <td>
-				<% end %> 
-				<% end %> 
-			
-        	</tr>
-        	
-        </tbody>
-    
-	</div>
+          <thead>
+            <tr>  
+              <th><%= model_class.human_attribute_name(:name) %></th>
+              <th><%= model_class.human_attribute_name(:picture) %></th>
+              <th><%= model_class.human_attribute_name(:Photo_by) %></th>
+              <th><%=t '.actions', :default => t("helpers.actions") %></th>
+            </tr>
+          </thead>
+          <tbody>
+          	<% @image_albums.each do |photo| %>
+          	<tr>
+          		<td><%= photo.name %></td>
+          		<td><strong><a href="/images/<%= photo.id %>"><%= image_tag photo.picture.url, width: "100" %></a></strong></td>
+          		<td><%= photo.credit %></td>
+          		<% if current_user.id == photo.user_id || !@id.admin? %>
+      				  <td><%= link_to "edit this photo", edit_image_path(photo), class: "btn btn-xs btn-primary" %>
+      				      <%= link_to 'Delete', image_path(photo), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% else %>
+                <td>Admin Account Locked: <br><p style="color: darkred;"><%= User.find(photo.user_id).email %></p> </td>
+  				    <% end %> 
+          	</tr>
+            <% end %> 	
+          </tbody>
+        </table>
+  </div>      	
 </div>
 
 
