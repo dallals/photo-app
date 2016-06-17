@@ -49,7 +49,7 @@ class ImagesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @image.errors, status: :unprocessable_entity }
-        flash[:danger] = "You have exceeded the maximum number of photos you can upload."
+        flash[:danger] = "You have exceeded the maximum number of photos(20) you can upload."
       end
     end
   end
@@ -75,6 +75,7 @@ class ImagesController < ApplicationController
     if @images
       # @users = current_user.except_current_user(@users)
       render partial: "lookup"
+      # render :new
     else
       render status: :not_found, nothing: true
     end
