@@ -50,6 +50,18 @@ class AlbumsController < ApplicationController
 		end
 	end
 
+	def search
+    @images = Image.search(params[:search_param])
+    # puts @images
+    if @images
+      # @users = current_user.except_current_user(@users)
+      render :show
+      # render partial: "lookup"
+    else
+      render status: :not_found, nothing: true
+    end
+  end
+
 
   private
 
