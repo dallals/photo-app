@@ -75,7 +75,6 @@ class ImagesController < ApplicationController
     if @images
       # @users = current_user.except_current_user(@users)
       render partial: "lookup"
-      # render :new
     else
       render status: :not_found, nothing: true
     end

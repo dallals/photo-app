@@ -34,12 +34,12 @@ $(document).ready(function(){
                     pauseOnHover: true,
                     restartDelay: 2500,
                 },
-                navigation: true,
-                pagination: true     
+                navigation: false,
+                pagination: false     
               });
             });
          
-	
+})
 
 	// init_image_lookup = function(){
 
@@ -67,7 +67,7 @@ $(document).ready(function(){
 	// 		});
 	// }
 
-})
+
 
 
 

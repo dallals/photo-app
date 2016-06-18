@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # post "login", to: 'freeusers#login'
   # post 'logout', to: 'freeusers#logout'
   post 'search_images', to: "images#search"
+  post 'search_images_album', to: "albums#search"
   # get 'freeuser', to: "freeusers#show"
   # post 'delete_freeuser', to: "freeuser#destroy"
   # get 'user/edit/:id', to: "registrations#edit"
