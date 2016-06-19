@@ -165,3 +165,14 @@ ul {
 .signup{
 	margin-left: 15px;
 }
+
+.imagebar{
+	margin-top: -10px;
+	margin-left: 180px;
+	height: 125px;
+	width: 1000px;
+	display: inline-block;
+	overflow-x: auto;
+	white-space:nowrap;
+	overflow-y: hidden;
+}

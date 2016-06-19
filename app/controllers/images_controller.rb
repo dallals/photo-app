@@ -19,6 +19,11 @@ class ImagesController < ApplicationController
   # GET /images/1.json
   def show
     @id = User.find(@image.user_id)
+    if current_user.admin?
+      @images = Image.all
+    else
+      @images = Image.where(user_id: current_user)
+    end
   end
 
   # GET /images/new

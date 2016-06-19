@@ -44,12 +44,18 @@ class Image < ActiveRecord::Base
   	matches('credit', param)
   end
 
-  # def self.user_matches(param)
-  #   matches('user_id', param)
-  # end
 
   def self.matches(field_name, param)
     where("lower(#{field_name}) like ?", "%#{param}%")
+  end
+
+
+  def self.next(image)
+    where('id < ?', image.id).last
+  end
+
+  def self.previous(image)
+    where('id > ?', image.id).first
   end
 
 
