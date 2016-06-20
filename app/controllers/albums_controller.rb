@@ -22,6 +22,12 @@ class AlbumsController < ApplicationController
     	@id = User.find(@album.user_id) # in view page you can use User.find(@album.user_id).email 
 	end
 
+	def show_image
+		@album = Album.where(user_id: current_user)
+		@image = Image.where(user_id: current_user)
+		@id = User.find(current_user)
+	end
+
 	def create
 		@album = Album.create album_params
 		# @album.user_id = current_user.id 
