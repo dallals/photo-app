@@ -20,7 +20,7 @@ class ImagesController < ApplicationController
   def show
     @id = User.find(@image.user_id)
     if current_user.admin?
-      @images = Image.all
+      @images = Image.where(user_id: @id)
     else
       @images = Image.where(user_id: current_user)
     end

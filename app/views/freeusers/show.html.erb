@@ -2,7 +2,7 @@
 
 <% if !@user.admin? %>
 	<div class="col-xl-5 col-xs-offset-9" style="margin-top: -50px; padding-bottom: 10px;">
-		<%= link_to "Delete User", freeuser_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete this User?" }, class: "btn btn-lg btn-danger" %>
+		<%= link_to "Delete User", freeuser_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete #{@user.email}?" }, class: "btn btn-lg btn-danger" %>
 	</div>
 <% end %>
 
