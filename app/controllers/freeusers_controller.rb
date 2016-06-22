@@ -1,8 +1,12 @@
 class FreeusersController < ApplicationController
 	skip_before_action :authenticate_user!
-	before_action :set_user, only: [:edit, :update, :show, :destroy]
+	before_action :set_user, only: [:edit, :update, :show, :destroy, :index]
 	
 
+
+	def index
+		
+	end
 
     def show
     	@images = Image.all.order(updated_at: :desc)

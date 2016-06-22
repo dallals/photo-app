@@ -1,0 +1,61 @@
+<%- model_class = Image -%> 
+ 
+<div class="page-header" style="margin-top: -20px;">
+  <h1><%= @image_albums.name %></h1>
+  <% if current_user.admin? %>  
+    <p style="font-weight: bold; color: darkred;">This Photo Belongs to: <%= @id.email %> </p>
+  <% end %>
+  <div class="col-md-12">
+    <div style="margin-top: -30px;" align="right">
+    <%= link_to t('.back', :default => t("helpers.links.back")),
+                  images_path, :class => 'btn-sm btn-info'  %>
+    <% if !@id.admin? || current_user == @id %>              
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_image_path(@image), :class => 'btn-sm btn-success' %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  image_path(@image),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn-sm btn-danger' %>
+             
+    <% end %> 
+                 
+  </div>
+</div>
+</div>
+
+<dl style="margin-left: -60px;" class="dl-horizontal">
+    <dt></dt>
+    <div align="left">
+      <dd><%= image_tag(@image.picture.url, width: "1000") if @image_albums.picture? %></dd>
+      <div align="left" style="margin-top: 10px;">
+
+      <div class="imagebar">
+          <% @image_albums.each do |image| %>
+          
+          <div style="display: inline-block;">
+            <div class="thumbnail" style="width: 150px;">
+              <a href="/albumsshow/<%= image.id %>"><%= image_tag image.picture.url %></a>
+            </div> 
+          </div>
+          <% end %>       
+           
+      </div>  
+        <dd>
+            <% if @images_albums.next(@image) %>
+              <%= link_to 'Previous', @images_albums.next(@image), :class => 'btn btn-sm btn-primary' %>
+            <% else %>
+              <button class="btn btn-sm btn-danger">First Image</button>
+            <% end %>
+            <% if @images_albums.previous(@image) %>
+            <%= link_to 'Next', @images_albums.previous(@image), :class => 'btn btn-sm btn-primary' %>
+            <% else %>
+             <button class="btn btn-sm btn-danger">End of the Line</button>
+            <% end %>
+        </dd>
+      </div>
+      <div style="width: 1150px; word-wrap: break-word;">
+          <p><dd><%= @image.caption %> <p style="font-weight: italic"> Photo by: <%= @image.credit %></p></dd></p>  
+      </div>
+    </div> 
+</dl>

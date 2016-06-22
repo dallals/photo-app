@@ -26,6 +26,7 @@ class AlbumsController < ApplicationController
 		@album = Album.where(user_id: current_user)
 		@image = Image.where(user_id: current_user)
 		@id = User.find(current_user)
+		#need to make an albumimage controller to display single images with thumbnails from just the album
 	end
 
 	def create
