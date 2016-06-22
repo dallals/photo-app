@@ -23,7 +23,7 @@
 	    		<tbody>
 
 	    			<% @images.each do |image| %>
-              		<% if @user == image.user  %>
+              		<% if @user == image.user %>
 	    			<tr>
 	    				  <td><p><%= link_to image.name, image_path(image) %></p></td>
 	            		  <td><strong><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td><strong>
