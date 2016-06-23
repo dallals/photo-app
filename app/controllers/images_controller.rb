@@ -67,7 +67,7 @@ class ImagesController < ApplicationController
         format.html { redirect_to @image, notice: 'Image was successfully updated.' }
         format.json { render :show, status: :ok, location: @image }
       else
-        flash[:danger] = "Name must be at least 3 characters long or a maximum of 30 characters long"
+        flash[:danger] = "Name must be 3 characters long or a maximum of 30 characters long, or you have reached the maximum number of images allowed delete one image to update"
         format.html { redirect_to :back }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end

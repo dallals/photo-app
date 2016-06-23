@@ -48,7 +48,7 @@
           	<% @image_albums.each do |photo| %>
           	<tr>
           		<td><%= photo.name %></td>
-          		<td><strong><a href="/images/<%= photo.id %>"><%= image_tag photo.picture.url, width: "100" %></a></strong></td>
+          		<td><strong><a href="/images/<%= photo.id %>"><%= image_tag photo.picture.url, width: "175" %></a></strong></td>
           		<td><%= photo.credit %></td>
           		<% if current_user.id == photo.user_id || !@id.admin? %>
       				  <td><%= link_to "edit this photo", edit_image_path(photo), class: "btn btn-xs btn-primary" %>

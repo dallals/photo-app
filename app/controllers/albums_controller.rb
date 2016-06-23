@@ -14,7 +14,7 @@ class AlbumsController < ApplicationController
 
 	def new
 	  @album = Album.new
-  end
+  	end
 
 	def show
 		# @image_albums = @album.images.paginate(page: params[:page], per_page: 5).order(updated_at: :desc)
