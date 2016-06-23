@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :images
   resources :freeusers, only: [:show, :destroy]
   resources :albums
@@ -14,7 +15,8 @@ Rails.application.routes.draw do
   # get 'freeuser', to: "freeusers#show"
   # post 'delete_freeuser', to: "freeuser#destroy"
   # get 'user/edit/:id', to: "registrations#edit"
-
+  # get "*any", via: :all, to: "errors#not_found"
+  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
