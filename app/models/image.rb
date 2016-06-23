@@ -5,8 +5,9 @@ class Image < ActiveRecord::Base
   has_many :albums, through: :image_albums
   # belongs_to :freeuser
   mount_uploader :picture, PictureUploader
-  validates :name, presence: true, length: { minimum: 3, maximum: 30 }
+  validates :name, presence: true, length: { minimum: 3, maximum: 30 }, on: :create
   validate :picture_size
+  # validate :validate_photo_quota
 
   LIMIT = 20
 
@@ -16,11 +17,10 @@ class Image < ActiveRecord::Base
 
   def validate_photo_quota
     return unless self.user
-    if self.user.images(:reload).count >= LIMIT
+    if self.user.images(:reload).count > LIMIT
       errors.add(:base, :exceeded_quota)
     end
   end
-
 
   def self.search(param)
   	return Image.all if param.blank?
@@ -66,4 +66,5 @@ class Image < ActiveRecord::Base
 			errors.add(:picture, "should be less the 5MB")
 		end
 	end
+
 end
