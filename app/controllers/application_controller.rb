@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   helper_method :current_user, :logged_in?
+  
 
 
 
@@ -19,6 +20,10 @@ class ApplicationController < ActionController::Base
   end
   def super_user
     @super_user = User.find(1)
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 
 end

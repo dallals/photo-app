@@ -98,7 +98,9 @@ class ImagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_image
-      @image = Image.find(params[:id])
+      @image = Image.find(params[:id]) 
+      # || not_found
+      # render :file => "#{Rails.root}/public/404.html",  :status => 404
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

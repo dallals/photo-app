@@ -9,6 +9,7 @@ class Image < ActiveRecord::Base
   validate :picture_size
   # validate :validate_photo_quota
 
+
   LIMIT = 20
 
   validate do |record|
