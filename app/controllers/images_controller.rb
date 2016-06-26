@@ -34,9 +34,7 @@ class ImagesController < ApplicationController
 
   # GET /images/1/edit
   def edit
-    @albums = current_user.albums
-
-    
+    @albums = current_user.albums  
   end
 
   # POST /images
@@ -111,5 +109,5 @@ class ImagesController < ApplicationController
         flash[:danger] = "You can only view, edit or delete your own photos"
         redirect_to images_path
       end
-  end
+    end
 end
