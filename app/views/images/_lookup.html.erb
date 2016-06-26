@@ -35,18 +35,17 @@
         <tbody>
         <div align="center" style="font-size: 16px;">
       </div>  
-	    		<tbody>
-             
+	    		<tbody>          
 	    			<% @images.each do |image| %>
               <% if current_user == image.user || current_user.admin %>
 	    			<tr>
-	    				  <td><p><%= link_to image.name, image_path(image) %></p></td>
-                <td><strong><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "125" %></a></td><strong>
-					      <td><strong></strong><%= time_ago_in_words (image.updated_at) %> ago</td>
+	    				  <td><strong><%= link_to image.name, image_path(image) %></strong></td>
+                <td><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "125" %></a></td>
+					      <td><%= time_ago_in_words (image.updated_at) %> ago</td>
                 <% if current_user.admin? %>
                 <td style="color: darkred;"><%= User.find(image.user_id).email %></td>
                 <% end %>
-					      <td><strong></strong><%= image.credit %></td>
+					      <td><strong><%= image.credit %></strong></td>
                 <% if !User.find(image.user_id).admin || current_user == image.user || current_user == User.find(1) %>
                  <td>
                   <%= link_to t('.edit', :default => t("helpers.links.edit")),

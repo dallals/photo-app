@@ -6,28 +6,24 @@
   <% if current_user.admin? %>  
     <p style="font-weight: bold; color: darkred;">This Photo Belongs to: <%= @id.email %> </p>
   <% end %>
-</div>  
-      
-        <div class="col-md-12">
-          <div style="margin-top: -55px;" align="right">
-          <%= link_to t('.back', :default => t("helpers.links.back")),
-                        images_path, :class => 'btn-sm btn-info btn active'  %>
-          <% if !@id.admin? || current_user == @id %>              
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                        edit_image_path(@image), :class => 'btn-sm btn-success btn active' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                        image_path(@image),
-                        :method => 'delete',
-                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                        :class => 'btn-sm btn-danger btn active' %>
-          <% end %>              
-          </div>
-        </div>
-
-
+</div>       
+    <div class="col-md-12">
+      <div style="margin-top: -55px;" align="right">
+      <%= link_to t('.back', :default => t("helpers.links.back")),
+                    images_path, :class => 'btn-sm btn-info btn active'  %>
+      <% if !@id.admin? || current_user == @id %>              
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_image_path(@image), :class => 'btn-sm btn-success btn active' %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    image_path(@image),
+                    :method => 'delete',
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn-sm btn-danger btn active' %>
+      <% end %>              
+      </div>
+    </div>
 <dl style="margin-left: -60px;" class="dl-horizontal">
-    <dt></dt>
-    
+    <dt></dt>   
       <dd><%= image_tag(@image.picture.url, width: "1000") if @image.picture? %></dd>
       <div style="margin-top: 5px;">
         <dd><p class="pull-right" style="font-weight: italic; margin-right: 20px;"> Photo by: <%= @image.credit %></p></dd>
@@ -36,15 +32,14 @@
             <% if @images.next(@image) %>
               <%= link_to 'Previous', @images.next(@image), :class => 'btn btn-xs btn-primary' %>
             <% else %>
-              <button class="btn btn-xs btn-danger">First Image</button>
+              <button class="btn btn-xs btn-danger btn active">First Image</button>
             <% end %>
             <% if @images.previous(@image) %>
               <%= link_to 'Next', @images.previous(@image), :class => 'btn btn-xs btn-primary' %>
             <% else %>
-               <button class="btn btn-xs btn-danger" style="margin-right: 10px;">End of the Line</button>
+               <button class="btn btn-xs btn-danger btn active" style="margin-right: 10px;">End of the Line</button>
             <% end %>
         </dd>
-
         <div class="imagebar" style="margin-top: 1px;">
           <% @images.each do |image| %>
           <div style="display: inline-block;">
@@ -54,9 +49,8 @@
           </div>       
           <% end %> 
         </div> 
-
         <%= form_for @image, :html => { multipart: true, :class => "form-horizontal image" } do |f| %>
-          <div class="input-group" style="margin-top: -10px;">
+          <div class="input-group" style="margin-top: -5px;">
             <div class="form-group">
               <div class="">
                 <div class="">  
