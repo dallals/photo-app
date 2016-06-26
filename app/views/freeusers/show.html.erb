@@ -1,6 +1,6 @@
 <h3 align="center"> <%= "User: " + @user.email %></h3>
 
-<% if !@user.admin? %>
+<% if !@user.admin? || current_user == User.find(1) %>
 	<div class="col-xl-5 col-xs-offset-9" style="margin-top: -50px; padding-bottom: 10px;">
 		<%= link_to "Delete User", freeuser_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete #{@user.email}?" }, class: "btn btn-lg btn-danger" %>
 	</div>
@@ -21,15 +21,14 @@
         <div align="center" style="font-size: 16px;">
       </div>  
 	    		<tbody>
-
 	    			<% @images.each do |image| %>
               		<% if @user == image.user %>
 	    			<tr>
-	    				  <td><p><%= link_to image.name, image_path(image) %></p></td>
-	            		  <td><strong><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td><strong>
-					      <td><strong></strong><%= time_ago_in_words (image.updated_at) %> ago</td>
-					      <td><strong></strong><%= image.credit %></td>
-					      <% if !@user.admin? || current_user == @user %>
+	    				  <td><strong><%= link_to image.name, image_path(image) %></strong></td>
+	            		  <td><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td>
+					      <td><%= time_ago_in_words (image.updated_at) %> ago</td>
+					      <td><strong><%= image.credit %></strong></td>
+					      <% if !@user.admin? || current_user == @user || current_user == User.find(1) %>
 					      <td> 
 			                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                              edit_image_path(image), :class => 'btn-xs btn-info btn' %>
@@ -40,7 +39,7 @@
 			                              :class => 'btn btn-xs btn-danger' %>
                 		  </td>
                 		  <% else %>
-                		  <td><p style="color: darkred;">Admin Account Locked</p><td>
+                		  	<td><p style="color: darkred;">Admin Account Locked</p><td>
                 		  <% end %>
 			              
 	        		</tr>	 	

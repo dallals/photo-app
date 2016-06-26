@@ -35,9 +35,6 @@ class FreeusersController < ApplicationController
 	# 		render :new	
 	# 	end
 	# end	
-
-
-
 	private
 
 	def set_user

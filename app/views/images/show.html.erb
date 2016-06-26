@@ -32,12 +32,16 @@
             <% if @images.next(@image) %>
               <%= link_to 'Previous', @images.next(@image), :class => 'btn btn-xs btn-primary' %>
             <% else %>
+            <% if @images.size >= 2 %>
               <button class="btn btn-xs btn-danger btn active">First Image</button>
+            <% end %>
             <% end %>
             <% if @images.previous(@image) %>
               <%= link_to 'Next', @images.previous(@image), :class => 'btn btn-xs btn-primary' %>
             <% else %>
-               <button class="btn btn-xs btn-danger btn active" style="margin-right: 10px;">End of the Line</button>
+              <% if @images.size >= 2 %>
+               <button class="btn btn-xs btn-danger btn active" style="margin-right: 10px;">Last Image</button>
+              <% end %> 
             <% end %>
         </dd>
         <div class="imagebar" style="margin-top: 1px;">
