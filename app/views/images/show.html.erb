@@ -11,7 +11,7 @@
       <div style="margin-top: -55px;" align="right">
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     images_path, :class => 'btn-sm btn-info btn active'  %>
-      <% if !@id.admin? || current_user == @id %>              
+      <% if !@id.admin? || current_user == @id || current_user == User.find(1) %>              
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_image_path(@image), :class => 'btn-sm btn-success btn active' %>
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -32,9 +32,9 @@
             <% if @images.next(@image) %>
               <%= link_to 'Previous', @images.next(@image), :class => 'btn btn-xs btn-primary' %>
             <% else %>
-            <% if @images.size >= 2 %>
-              <button class="btn btn-xs btn-danger btn active">First Image</button>
-            <% end %>
+              <% if @images.size >= 2 %>
+                <button class="btn btn-xs btn-danger btn active">First Image</button>
+              <% end %>
             <% end %>
             <% if @images.previous(@image) %>
               <%= link_to 'Next', @images.previous(@image), :class => 'btn btn-xs btn-primary' %>
@@ -57,11 +57,13 @@
           <div class="input-group" style="margin-top: -5px;">
             <div class="form-group">
               <div class="">
-                <div class="">  
+                <div class=""> 
+                <% if !@id.admin? || current_user == @id || current_user == User.find(1) %> 
                 <%= f.label :albums, :class => 'control-label col-lg-3' %>
                   <%= f.collection_check_boxes :album_ids, Album.where(user_id: @id), :id, :name do |cb| %>
                     <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text }%>
                 <% end %> 
+
                 </div>  
               </div>
             </div>
@@ -70,6 +72,7 @@
                 <div class="col-lg-offset-0 col-lg-10">
                   <%= f.submit nil, :class => 'btn btn-sm btn-success' %>
                 </div>
+                <% end %>
               </div>
             </span>
           </div>  
