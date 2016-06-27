@@ -2,4 +2,11 @@
 <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %>: '<%= @image.name %>'</h1>
 </div>
-<%= render :partial => 'form' %>
+<div align="center" style="margin-bottom: 10px;">
+<dd><%= image_tag(@image.picture.url, width: "650") if @image.picture? %></dd>
+<hr>
+</div>
+<div style="margin-left: -100px">
+	<%= render :partial => 'form' %>
+</div>
+ 
