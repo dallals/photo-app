@@ -35,7 +35,7 @@ class ImagesController < ApplicationController
   # GET /images/1/edit
   def edit
     @id = User.find(@image.user_id)
-    @albums = current_user.albums  
+    # @albums = current_user.albums  
   end
 
   # POST /images

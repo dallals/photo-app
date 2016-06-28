@@ -1,24 +1,22 @@
 <h1 align="center">Listing all Albums</h1>
 <div id="welcome_background">
-	<div align="center" style="width: 1150px; height: 800px; overflow: scroll">
-		
+	<div align="center" style="width: 1150px; height: 800px; overflow: scroll">		
 		<% @albums.each do |album| %>
 		<% if current_user.id == album.user_id || current_user.admin? %>
 			<ul class="listing">
 				<div class="row">
-					<div class="well col-md-4 col-md-offset-4" style="opacity: 0.7; margin-top: 15px; border: 1px solid grey;">
+					<div class="well col-md-4 col-md-offset-4" style="opacity: 0.6; margin-top: 15px; border: 1px solid grey;">
 						<li class="article-title">
-							<h3><%= link_to "#{album.name}", album_path(album) %></h3>
+							<h3 style="margin-top: -5px;"><%= link_to "#{album.name}", album_path(album) %></h3>
 						</li>
-						<li><small><%= pluralize(album.images.count, "images") %></small></li>
+						<li><strong><%= pluralize(album.images.count, "images") %></strong></li>
 						<% if current_user.admin %>
-							<li><small style="font-weight: bold; color: darkred;">Album Owner: <%= User.find(album.user_id).email %></small></li>
+							<li><strong style="font-weight: bold; color: darkred;">Album Owner: <%= User.find(album.user_id).email %></strong></li>
 						<% end %>
 					</div>		
 				</div>
 			</ul>
 			<% end %>
-		<% end %>
-		
+		<% end %>	
 	 </div>	
 </div> 

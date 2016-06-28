@@ -4,12 +4,12 @@ class AlbumsController < ApplicationController
 	
 	def index
 		if current_user.admin?
-			@albums = Album.all.order(user_id: :desc)
+			@albums = Album.all.order(user_id: :asc)
 		else
 			@albums = Album.all
 		end	
 		# @albums = Album.paginate(page: params[:page], per_page: 5).order(name: :asc)
-		@images = Image.all
+		@images = Image.where(user_id: current_user)
 	end
 
 	def new
