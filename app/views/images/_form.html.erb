@@ -49,7 +49,7 @@
           <div class="col-sm-offset-2 col-sm-7">
           
           <%= f.label :albums, :class => 'control-label col-lg-2' %>
-            <%= f.collection_check_boxes :album_ids, Album.where(user_id: current_user), :id, :name do |cb| %>
+            <%= f.collection_check_boxes :album_ids, Album.where(user_id: @id), :id, :name do |cb| %>
               <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text }%>
             <% end %>
 
