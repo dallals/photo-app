@@ -1,4 +1,6 @@
+<%- model_class = Image -%>
 <h3 align="center"> <%= "User: " + @user.email %></h3>
+
 
 <% if !@user.admin? || current_user == User.find(1) %>
 	<div class="col-xl-5 col-xs-offset-9" style="margin-top: -50px; padding-bottom: 10px;">
@@ -6,8 +8,30 @@
 	</div>
 <% end %>
 
-<%- model_class = Image -%>
-		<table class="search-results-table col-md-12 table table-striped">
+<div id="image-lookup">
+	<h3>Search for images</h3>
+	  <%= form_tag search_images_path, remote: true, method: :post, id: 'image-lookup-form' do %>
+	  <div class="form-group row no-padding text-center col-md-8">
+		    <div class="col-md-8">
+		      <%= text_field_tag :search_param, params[:search_param], autofocus: true,
+		                                                          class: 'form-control search-box input-sm' %>
+		    </div>
+		    <div class="col-md-2">
+		      <%= button_tag(type: :submit, class: "btn btn-sm btn-success") do %>
+		        <i class="fa fa-search"></i> Search Images
+
+		      <% end %>          
+		      <% end %>
+
+		   	</div>  
+	   </div> 
+	   <div class="col-md-">
+	      <%= link_to t('.back', :default => t("helpers.links.back")),
+                    freeusers_path, :class => 'btn-sm btn-info btn active'  %> 
+        </div>
+	
+
+		<table class="search-results-table col-md-12 table table">
         <thead>
           <tr>  
             <th><%= model_class.human_attribute_name(:title) %></th>
@@ -15,7 +39,6 @@
             <th><%= model_class.human_attribute_name(:updated_at) %></th>
             <th><%= model_class.human_attribute_name(:Photo_by) %></th>
             <th>Action</th>
-
           </tr>
         </thead>
         <div align="center" style="font-size: 16px;">
@@ -48,5 +71,7 @@
             <% end %>
 	      	</tbody>
     	</table> 
-    </div>
+
+ 
+    
 	     		

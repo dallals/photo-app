@@ -1,11 +1,12 @@
 class FreeusersController < ApplicationController
 	skip_before_action :authenticate_user!
-	before_action :set_user, only: [:edit, :update, :show, :destroy, :index]
+	before_action :set_user, only: [:edit, :update, :show, :destroy]
 	
 
 
 	def index
-		
+		# @users = User.all
+		@freeusers = User.paginate(page: params[:page], per_page: 20).order(email: :asc)
 	end
 
     def show
@@ -22,6 +23,17 @@ class FreeusersController < ApplicationController
 	  	redirect_to :back
 	  end
   	end 
+
+  def search
+    @users = User.search(params[:search_param])
+    # puts @images
+    if @users
+      # @users = current_user.except_current_user(@users)
+      render partial: "lookup"
+    else
+      render status: :not_found, nothing: true
+    end
+  end
 
 	# def login
 	# 	user = Finduser.find_by(email:params[:session][:email].downcase)

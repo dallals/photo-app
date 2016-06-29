@@ -1,6 +1,7 @@
 <%- model_class = Image -%>
 
 <div id="image-lookup">
+
   <h3>Search for images</h3>
   <%= form_tag search_images_path, remote: true, method: :post, id: 'image-lookup-form' do %>
   <div class="form-group row no-padding text-center col-md-8">
@@ -74,3 +75,4 @@
       <%= link_to "All Images", "/images", :class => 'btn btn-info'  %>      		
   <div id="image-lookup-errors"></div>
 </div>
+

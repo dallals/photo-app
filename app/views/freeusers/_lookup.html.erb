@@ -1,0 +1,65 @@
+<%- model_class = Freeuser -%>
+<% if current_user.admin? %>
+<div id="user-lookup">
+  <h3>Search for Users</h3>
+  <%= form_tag search_freeusers_path, remote: true, method: :post, id: 'user-lookup-form' do %>
+  <div class="form-group row no-padding text-center col-md-8">
+    <div class="col-md-8">
+      <%= text_field_tag :search_param, params[:search_param], autofocus: true,
+                                                          class: 'form-control search-box input-sm' %>
+    </div>
+      <div class="col-md-2">
+        <%= button_tag(type: :submit, class: "btn btn-sm btn-success") do %>
+        <i class="fa fa-search"></i> Search Users
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  	<% if @freeusers.size > 0 %>
+    	<div id="user-lookup-results">
+	    	<table class="search-results-table col-md-12 table table-striped">
+        <thead>
+          <tr>  
+            <th><%= model_class.human_attribute_name(:email) %></th>
+            <th><%= model_class.human_attribute_name(:admin) %></th>
+            <th><%= model_class.human_attribute_name(:updated_at) %></th>
+            <th><%=t '.actions', :default => t("helpers.actions") %></th>  
+          </tr>
+        </thead>
+        <tbody>
+
+	    		<tbody>          
+	    			<% @freeusers.each do |user| %>  
+	    			<tr>
+	    				  <td><strong><%= link_to user.email, freeuser_path(user) %></strong></td>
+                <td><%= user.admin %></td>
+					      <td><%= time_ago_in_words (user.updated_at) %> ago</td>
+                <% if !user.admin || current_user == user || current_user == User.find(1) %>
+                 <td>
+                  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                              freeuser_path(user),
+                              :method => :delete,
+                              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                              :class => 'btn btn-xs btn-danger' %>
+                </td>
+                <% else %>
+                      <td>Admin Account Locked <br><p style="color: darkred;"><%= user.email %></p> </td>
+                <% end %>            
+	        		</tr>	 	
+	      		<% end %>          
+            <% end %>          
+	      	</tbody>
+    	</table> 
+	    <% else %>	
+	    	<p class="lead col-md-12">No users match this search </p>	      		
+       <div id="user-lookup-errors"></div>
+      </div>
+
+</div> 
+<%= will_paginate %>
+<% end %>   
+
+  
+ 
+
