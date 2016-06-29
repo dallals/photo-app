@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :images
-  resources :freeusers, only: [:show, :destroy]
+  resources :freeusers, only: [:show, :destroy, :index]
   resources :albums
   resources :albumsshows, only: [:show]
   devise_for :users, :controllers => { :registrations => 'registrations'}
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # post 'logout', to: 'freeusers#logout'
   post 'search_images', to: "images#search"
   post 'search_images_album', to: "albums#search"
+  post 'search_freeusers', to: "freeusers#search"
   
   # get 'freeuser', to: "freeusers#show"
   # post 'delete_freeuser', to: "freeuser#destroy"
