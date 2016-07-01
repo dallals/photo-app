@@ -25,6 +25,7 @@
         <%= f.password_field :password_confirmation, class: "form-control" %>
       </div>
       <% if current_user %>
+      <!-- Took out the stripe payment option  -->
       <%= fields_for( :payment ) do |p| %>
         <div class="row col-md-12 no-left-padding">
           <div class="form-group col-md-4">
@@ -50,6 +51,7 @@
         </div> 
         <% end %>  
       <% end %>
+      <!-- end of the if current_user statement -->
       <div class="form-group row-md-2 signup">
         <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %> 
         </div>

@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # post 'logout', to: 'freeusers#logout'
   post 'search_images', to: "images#search"
   post 'search_images_album', to: "albums#search"
-  post 'search_freeusers', to: "freeusers#search"
+  # post 'search_freeusers', to: "registrations#search"
+  post 'search_freeusers', to: "freeusers#searchuser"
+  # post 'search_freeusers', to: "images#searchuser"
   
   # get 'freeuser', to: "freeusers#show"
   # post 'delete_freeuser', to: "freeuser#destroy"

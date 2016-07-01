@@ -1,11 +1,11 @@
 class FreeusersController < ApplicationController
-	skip_before_action :authenticate_user!
+	# skip_before_action :authenticate_user!
 	before_action :set_user, only: [:edit, :update, :show, :destroy]
 	
 
 
 	def index
-		# @users = User.all
+		# @freeusers = User.all
 		@freeusers = User.paginate(page: params[:page], per_page: 20).order(email: :asc)
 	end
 
@@ -24,7 +24,7 @@ class FreeusersController < ApplicationController
 	  end
   	end 
 
-  def search
+  def searchuser
     @users = User.search(params[:search_param])
     # puts @images
     if @users

@@ -84,6 +84,17 @@ class ImagesController < ApplicationController
     end
   end
 
+  def searchuser
+    @users = User.search(params[:search_param])
+    # puts @images
+    if @users
+      # @users = current_user.except_current_user(@users)
+      render partial: "lookup"
+    else
+      render status: :not_found, nothing: true
+    end
+  end
+
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy

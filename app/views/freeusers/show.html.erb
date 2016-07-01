@@ -48,7 +48,7 @@
               		<% if @user == image.user %>
 	    			<tr>
 	    				  <td><strong><%= link_to image.name, image_path(image) %></strong></td>
-	            		  <td><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "100" %></a></td>
+	            		  <td><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "150" %></a></td>
 					      <td><%= time_ago_in_words (image.updated_at) %> ago</td>
 					      <td><strong><%= image.credit %></strong></td>
 					      <% if !@user.admin? || current_user == @user || current_user == User.find(1) %>
