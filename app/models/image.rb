@@ -18,7 +18,7 @@ class Image < ActiveRecord::Base
 
   def validate_photo_quota
     return unless self.user
-    if self.user.images(:reload).count > LIMIT
+    if self.user.images(:reload).count >= LIMIT
       errors.add(:base, :exceeded_quota)
     end
   end

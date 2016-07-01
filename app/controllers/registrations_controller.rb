@@ -44,6 +44,17 @@ def create
 
 end
 
+  def search
+    @users = User.search(params[:search_param])
+    # puts @images
+    if @users
+      # @users = current_user.except_current_user(@users)
+      render partial: "freeusers/lookup"
+    else
+      render status: :not_found, nothing: true
+    end
+  end
+
 protected
 
 	def configure_permitted_parameters

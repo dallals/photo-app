@@ -12,12 +12,12 @@ $(document).ready(function(){
 			data: $(this).serialize()
 		}).success(function(data){
 			console.log(data);
-			$('#image-lookup').replaceWith(data);
+			$('#user-lookup').replaceWith(data);
 				// init_image_lookup();
 		}).error(function(err){
 			console.log(err);
-			$('#image-lookup-results').replaceWith('');
-			$('#image-lookup-errors').replaceWith('User was not found');
+			$('#user-lookup-results').replaceWith('');
+			$('#user-lookup-errors').replaceWith('User was not found');
 		})
 		return false;			
 	})
