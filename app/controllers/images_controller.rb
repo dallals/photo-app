@@ -7,11 +7,12 @@ class ImagesController < ApplicationController
   # GET /images.json
   def index
     @user = User.all
+    @id = User.find(current_user)
     if current_user.admin?
       @images = Image.all.order(:user_id)
     else
-      @images = Image.all.order(updated_at: :desc)
-    # @images = Image.paginate(page: params[:page], per_page: 10).order(updated_at: :desc)
+      @images = Image.where(user_id: current_user).order(updated_at: :desc)
+    # @images = Image.where(user_id: current_user).paginate(page: params[:page], per_page: 2).order(updated_at: :desc)
     end
   end
 
