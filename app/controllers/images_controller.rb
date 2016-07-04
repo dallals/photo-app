@@ -28,6 +28,7 @@ class ImagesController < ApplicationController
 
   # GET /images/new
   def new
+    @id = User.find(current_user)
     @image = Image.new
     @albums = Album.all
   end
@@ -45,7 +46,7 @@ class ImagesController < ApplicationController
     @image.user = current_user
     # @album = Album.all
     # @image.album_id = @album.id
-
+c
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
