@@ -51,12 +51,14 @@
                  <td>
                   <%= link_to t('.edit', :default => t("helpers.links.edit")),
                               edit_image_path(image), :class => 'btn btn-info btn-xs' %>
+                  <% unless current_user == User.find(14) || current_user == User.find(12) %> 
                   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                               image_path(image),
                               :method => :delete,
                               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                               :class => 'btn btn-xs btn-danger' %>
                 </td>
+                <% end %>
                 <% else %>
                       <td>Admin Account Locked <br><p style="color: darkred;"><%= User.find(image.user_id).email %></p> <td>
                 <% end %>        

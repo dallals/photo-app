@@ -14,11 +14,13 @@
       <% if !@id.admin? || current_user == @id || current_user == User.find(1) %>              
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_image_path(@image), :class => 'btn-sm btn-success btn active' %>
+      <% unless current_user == User.find(14) || current_user == User.find(12) %>              
       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                     image_path(@image),
                     :method => 'delete',
                     :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                     :class => 'btn-sm btn-danger btn active' %>
+      <% end %>              
       <% end %>              
       </div>
     </div>
