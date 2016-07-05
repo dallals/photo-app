@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  devise :timeoutable, :timeout_in => 120.minutes       
   has_one :payment
   accepts_nested_attributes_for :payment
   has_many :images, dependent: :destroy
