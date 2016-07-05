@@ -13,11 +13,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'http://localhost:3000'}
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
-  # config.consider_all_requests_local       = false
+  # config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = false
 
-  # config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
