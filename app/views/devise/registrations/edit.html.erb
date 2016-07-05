@@ -1,5 +1,5 @@
 <%= bootstrap_devise_error_messages! %>
-<% unless current_user == User.find(12) || current_user == User.find(14) %>
+<% if current_user == User.find(12) || current_user == User.find(14) %>
 <div class="panel panel-default devise-bs">
   <div class="panel-heading">
     <h4><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h4>
