@@ -91,8 +91,10 @@
                     </li>
                     <% end %>
                   <% end %>
-            <% else %>      
+            <% else %> 
+            <% unless current_user == User.find(12) || current_user == User.find(14) %>     
             <li><%= link_to "Edit your profile", "/users/edit"  %></li>
+            <% end %>
             <% end %>
             </ul>
             </li>
