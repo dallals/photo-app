@@ -7,7 +7,7 @@
     <p style="font-weight: bold; color: darkred;">This Photo Belongs to: <%= @id.email %> </p>
   <% end %>
   <% if current_user == User.find(14) || current_user == User.find(12) %>
-    <small style="font-weight: bold; color: darkred;">Demo Account <%= current_user.email %> Can't Delete Images. </small>
+    <small style="font-weight: bold; color: darkred;">Demo Account: <%= current_user.email %> Can't Delete Images. </small>
   <% end %>
 </div>       
     <div class="col-md-12">
