@@ -34,6 +34,7 @@ gem 'will_paginate', '3.0.7'
 gem 'table_print'
 gem 'instagram'
 gem 'social-share-button', '~> 0.1.6'
+gem 'pg'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -56,6 +57,6 @@ group :development, :test do
   gem 'spring'
 end
 group :production do
-	gem 'pg'
+	
 	gem 'rails_12factor'
 end	
