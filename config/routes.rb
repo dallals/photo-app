@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :images
+  resources :images do
+    resources :picture, :only => [:create]
+  end
   resources :freeusers, only: [:show, :destroy, :index]
   resources :albums
   resources :albumsshows, only: [:show]

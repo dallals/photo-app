@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy, :add_more_images]
   before_action :require_same_user, only: [:edit, :update, :destroy, :show]
   before_action :require_user
 
@@ -45,8 +45,9 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     @image.user = current_user
-    # @album = Album.all
-    # @image.album_id = @album.id
+    # add_more_images(image_params[:id])
+    # flash[:error] = "Failed uploading images" unless @image.save
+    
 
     respond_to do |format|
       if @image.save
@@ -55,10 +56,12 @@ class ImagesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @image.errors, status: :unprocessable_entity }
-        flash[:danger] = "You have exceeded the maximum number of photos(20) you can upload."
+        flash[:danger] = "You have exceeded the maximum number of photos(100) you can upload."
       end
     end
   end
+
+
 
   # PATCH/PUT /images/1
   # PATCH/PUT /images/1.json
@@ -112,6 +115,12 @@ class ImagesController < ApplicationController
     def set_image
       @image = Image.find(params[:id]) 
     end
+
+    # def add_more_images(new_images)
+    #   images = @image.picture # copy the old images 
+    #   images += new_images # concat old images with new ones
+    #   @image.picture = images # assign back
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
