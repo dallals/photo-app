@@ -14,7 +14,7 @@ class FreeusersController < ApplicationController
     end
 
     def edit
-    	if current_user.admin && current_user == User.find(1)
+    	if current_user.admin && current_user == User.find_by(email: 'sammydallal@gmail.com')
 	    	admin = @user
 	    	admin.toggle!(:admin) unless current_user == @user 
 	    	redirect_to :back
