@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :images do
     resources :picture, :only => [:create]
   end
-  resources :freeusers, only: [:show, :destroy, :index]
+  resources :freeusers, only: [:show, :destroy, :index, :edit]
   resources :albums
   resources :albumsshows, only: [:show]
   devise_for :users, :controllers => { :registrations => 'registrations'}
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # get "login", to: 'freeusers#new'
   # post "login", to: 'freeusers#login'
   # post 'logout', to: 'freeusers#logout'
+  # post 'change_admin/:id', to: "freeusers#admin_change"
   post 'search_images', to: "images#search"
   post 'search_images_album', to: "albums#search"
   # post 'search_freeusers', to: "registrations#search"
