@@ -1,6 +1,6 @@
 class FreeusersController < ApplicationController
 	# skip_before_action :authenticate_user!
-	before_action :set_user, only: [:edit, :update, :show, :destroy]
+	before_action :set_user, only: [:edit, :update, :show, :destroy, :admin_change]
 	
 
 
@@ -13,9 +13,20 @@ class FreeusersController < ApplicationController
     	@images = Image.all.order(updated_at: :desc)
     end
 
+    def edit
+    	if current_user.admin && current_user == User.find(1)
+	    	admin = @user
+	    	admin.toggle!(:admin) unless current_user == @user 
+	    	redirect_to :back
+	    else
+	    	flash[:danger] = "#{current_user.email} doesn't have the ability to change admin status"
+	    	redirect_to :back
+	    end
+    end
+
 	def destroy
 		if !@user.admin?
-	  	@user.destroy
+	  	@user.destroy unless current_user == @user
 	  	flash[:danger] = "User and all images and albums have been deleted"
 	  	redirect_to images_path
 	  else
