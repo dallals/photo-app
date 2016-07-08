@@ -3,7 +3,6 @@ class FreeusersController < ApplicationController
 	before_action :set_user, only: [:edit, :update, :show, :destroy, :admin_change]
 	
 
-
 	def index
 		# @freeusers = User.all
 		@freeusers = User.paginate(page: params[:page], per_page: 20).order(email: :asc)
