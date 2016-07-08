@@ -47,7 +47,7 @@
                 <td style="color: darkred;"><%= User.find(image.user_id).email %></td>
                 <% end %>
 					      <td><strong><%= image.credit %></strong></td>
-                <% if !User.find(image.user_id).admin || current_user == image.user || current_user == User.find(1) %>
+                <% if !User.find(image.user_id).admin || current_user == image.user || current_user == User.find_by(email: 'sammydallal@gmail.com') %>
                  <td>
                   <%= link_to t('.edit', :default => t("helpers.links.edit")),
                               edit_image_path(image), :class => 'btn btn-info btn-xs' %>

@@ -51,7 +51,7 @@
 	            		  <td><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "150" %></a></td>
 					      <td><%= time_ago_in_words (image.updated_at) %> ago</td>
 					      <td><strong><%= image.credit %></strong></td>
-					      <% if !@user.admin? || current_user == @user || current_user == User.find(1) %>
+					      <% if !@user.admin? || current_user == @user || current_user == User.find_by(email: 'sammydallal@gmail.com') %>
 					      <td> 
 			                  <%= link_to t('.edit', :default => t("helpers.links.edit")),
 			                              edit_image_path(image), :class => 'btn-xs btn-info btn' %>

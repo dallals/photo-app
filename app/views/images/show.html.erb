@@ -63,7 +63,7 @@
             <div class="form-group">
               <div class="">
                 <div class=""> 
-                <% if !@id.admin? || current_user == @id || current_user == User.find(1) %> 
+                <% if !@id.admin? || current_user == @id || current_user == User.find_by(email: 'sammydallal@gmail.com') %> 
                 <%= f.label :albums, :class => 'control-label col-lg-3' %>
                   <%= f.collection_check_boxes :album_ids, Album.where(user_id: @id), :id, :name do |cb| %>
                     <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text }%>

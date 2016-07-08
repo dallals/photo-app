@@ -40,7 +40,7 @@
 	    				  <td><strong><%= link_to user.email, freeuser_path(user) %></strong></td>
                 <td style="color: darkred;"><%= user.admin %></td>
 					      <td><%= time_ago_in_words (user.updated_at) %> ago</td>
-                <% if !user.admin || current_user == user || current_user == User.find(1) %>
+                <% if !user.admin || current_user == user || current_user == User.find_by(email: 'sammydallal@gmail.com') %>
                  <td>
                   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                               freeuser_path(user),
