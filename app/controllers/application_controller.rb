@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+  # before_action :set_user, only: [:require_super_user]
   helper_method :current_user, :logged_in?
   
 
@@ -25,8 +26,12 @@ class ApplicationController < ActionController::Base
   		redirect_to :back
   	end
   end
-  def super_user
-    @super_user = User.find(1)
+
+  def require_super_user
+    unless current_user == User.find_by(email: 'sammydallal@gmail.com')
+      flash[:info] = "You must be the appilcation owner to perform that action"
+      redirect_to :back
+    end
   end
 
   def not_found
@@ -35,6 +40,12 @@ class ApplicationController < ActionController::Base
 
   def local_request?
     false
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end

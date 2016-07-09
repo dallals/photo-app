@@ -1,5 +1,7 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy, :add_more_images]
+  # before_action :require_super_user, only: [:edit, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy, :add_more_images, :require_super_user]
+  before_action :require_super_user, only: [:edit, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy, :show]
   before_action :require_user
 
@@ -114,6 +116,13 @@ class ImagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_image
       @image = Image.find(params[:id]) 
+    end
+
+    def require_super_user
+      unless current_user == User.find_by(email: 'sammydallal@gmail.com') || current_user.id == @image.user_id
+        flash[:info] = "You can only edit or delete your own photos"
+        redirect_to :back
+      end
     end
 
     # def add_more_images(new_images)
