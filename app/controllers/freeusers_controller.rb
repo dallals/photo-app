@@ -1,7 +1,9 @@
 class FreeusersController < ApplicationController
 	# skip_before_action :authenticate_user!
 	before_action :require_admin
-	before_action :set_user, only: [:edit, :update, :show, :destroy, :admin_change]
+	before_action :set_user, only: [:edit, :update, :show, :destroy, :admin_change, :require_super_user]
+	before_action :require_super_user, only: [:edit, :destroy]
+	
 	
 
 	def index
@@ -22,6 +24,9 @@ class FreeusersController < ApplicationController
 	    	flash[:danger] = "#{current_user.email} doesn't have the ability to change admin status"
 	    	redirect_to :back
 	    end
+	    # admin = @user
+	    # admin.toggle!(:admin) unless current_user == @user
+	    # redirect_to :back
     end
 
 	def destroy
@@ -63,6 +68,13 @@ class FreeusersController < ApplicationController
 	def set_user
 		@user = User.find(params[:id])
 	end
+
+	def require_super_user
+		unless current_user == User.find_by(email: 'sammydallal@gmail.com') || current_user == @user
+      	flash[:info] = "You must be the appilcation owner to perform that action"
+      	redirect_to :back
+    end
+  end
 
 
 end

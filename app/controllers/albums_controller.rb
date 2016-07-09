@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
- 	before_action :set_album, only: [:edit, :update, :destroy, :show]
+ 	before_action :set_album, only: [:edit, :update, :destroy, :show, :require_super_user]
  	before_action :require_same_user, only: [:edit, :update, :destroy, :show]
+ 	before_action :require_super_user, only: [:edit, :destroy]
 	
 	def index
 		if current_user.admin?
@@ -79,6 +80,13 @@ class AlbumsController < ApplicationController
   	def set_album
   		 @album = Album.find(params[:id])
     end
+
+	def require_super_user
+		unless current_user == User.find_by(email: 'sammydallal@gmail.com') || current_user.id == @album.user_id
+		  flash[:info] = "You can only edit or delete your own Albums"
+		  redirect_to :back
+		end
+	end
 
   	def require_same_user
       if current_user.id != @album.user_id and !current_user.admin?
