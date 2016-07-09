@@ -1,5 +1,6 @@
 class FreeusersController < ApplicationController
 	# skip_before_action :authenticate_user!
+	before_action :require_admin
 	before_action :set_user, only: [:edit, :update, :show, :destroy, :admin_change]
 	
 
