@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
   # before_action :require_super_user, only: [:edit, :destroy]
-  before_action :set_image, only: [:show, :edit, :update, :destroy, :add_more_images, :require_super_user]
-  before_action :require_super_user, only: [:edit, :destroy]
+  before_action :set_image, only: [:show, :edit, :update, :destroy, :require_super_user]
+  before_action :require_super_user, only: [:edit, :destroy, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy, :show]
   before_action :require_user
 

@@ -52,7 +52,7 @@ class FreeusersController < ApplicationController
   end
 
 	# def login
-	# 	user = Finduser.find_by(email:params[:session][:email].downcase)
+	# 	user = User.find_by(email:params[:session][:email].downcase)
 	# 		if user && user.authenticate(params[:session][:password])
 	# 			session[:user_id] = freeuser.id
 	# 			@current_user = Freeuser.find(session[:user_id])
@@ -63,6 +63,7 @@ class FreeusersController < ApplicationController
 	# 		render :new	
 	# 	end
 	# end	
+	
 	private
 
 	def set_user
@@ -71,10 +72,10 @@ class FreeusersController < ApplicationController
 
 	def require_super_user
 		unless current_user == User.find_by(email: 'sammydallal@gmail.com') || current_user == @user
-      	flash[:info] = "You must be the appilcation owner to perform that action"
-      	redirect_to :back
-    end
-  end
+  		flash[:info] = "You must be the appilcation owner to perform that action"
+  		redirect_to :back
+      end
+  	end
 
 
 end

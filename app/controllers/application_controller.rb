@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     if !current_user.admin
-      flash[:danger] = "You must be admin to perform that action"
+      flash[:danger] = "You must be and admin user to perform that action"
       redirect_to images_path
     end
   end
@@ -27,12 +27,6 @@ class ApplicationController < ActionController::Base
   	end
   end
 
-  def require_super_user
-    unless current_user == User.find_by(email: 'sammydallal@gmail.com')
-      flash[:info] = "You must be the appilcation owner to perform that action"
-      redirect_to :back
-    end
-  end
 
   def not_found
     raise ActionController::RoutingError.new('Not Found')

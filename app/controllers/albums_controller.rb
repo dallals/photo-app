@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
  	before_action :set_album, only: [:edit, :update, :destroy, :show, :require_super_user]
  	before_action :require_same_user, only: [:edit, :update, :destroy, :show]
- 	before_action :require_super_user, only: [:edit, :destroy]
+ 	before_action :require_super_user, only: [:edit, :destroy, :update]
 	
 	def index
 		if current_user.admin?
