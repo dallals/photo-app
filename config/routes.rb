@@ -8,20 +8,11 @@ Rails.application.routes.draw do
   resources :albumsshows, only: [:show]
   devise_for :users, :controllers => { :registrations => 'registrations'}
   
-  # get "login", to: 'freeusers#new'
-  # post "login", to: 'freeusers#login'
-  # post 'logout', to: 'freeusers#logout'
-  # post 'change_admin/:id', to: "freeusers#admin_change"
+  
   post 'search_images', to: "images#search"
   post 'search_images_album', to: "albums#search"
-  # post 'search_freeusers', to: "registrations#search"
   post 'search_freeusers', to: "freeusers#searchuser"
-  # post 'search_freeusers', to: "images#searchuser"
   
-  # get 'freeuser', to: "freeusers#show"
-  # post 'delete_freeuser', to: "freeuser#destroy"
-  # get 'user/edit/:id', to: "registrations#edit"
-  # get "*any", via: :all, to: "errors#not_found"
   match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
   root 'welcome#index'
 
