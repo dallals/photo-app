@@ -47,7 +47,7 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     @image.user = current_user
-    # add_more_images(image_params[:id])
+    # add_more_images(image_params[:pictures])
     # flash[:error] = "Failed uploading images" unless @image.save
     
 
@@ -126,9 +126,9 @@ class ImagesController < ApplicationController
     end
 
     # def add_more_images(new_images)
-    #   images = @image.picture # copy the old images 
+    #   # images = @image.picture # copy the old images 
     #   images += new_images # concat old images with new ones
-    #   @image.picture = images # assign back
+    #   @image.pictures = images # assign back
     # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
