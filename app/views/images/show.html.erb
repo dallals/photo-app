@@ -12,7 +12,7 @@
       <div style="margin-top: -55px;" align="right">
       <%= link_to t('.back', :default => t("helpers.links.back")),
                     images_path, :class => 'btn-sm btn-info btn active'  %>
-      <% if current_user == @super_user %>              
+      <% if current_user == @super_user || current_user == @id %>              
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_image_path(@image), :class => 'btn-sm btn-success btn active' %>
                   
