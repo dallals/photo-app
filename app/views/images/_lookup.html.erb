@@ -47,7 +47,7 @@
                 <td style="color: darkred;"><%= User.find(image.user_id).email %></td>
                 <% end %>
 					      <td><strong><%= image.credit %></strong></td>
-                <% if !User.find(image.user_id).admin || current_user == image.user || current_user == User.find_by(email: 'sammydallal@gmail.com') %>
+                <% if current_user == @super_user || current_user.id == image.user_id %>
                  <td>
                   <%= link_to t('.edit', :default => t("helpers.links.edit")),
                               edit_image_path(image), :class => 'btn btn-info btn-xs' %>
@@ -60,7 +60,7 @@
                 </td>
                
                 <% else %>
-                      <td>Admin Account Locked <br><p style="color: darkred;"><%= User.find(image.user_id).email %></p> <td>
+                      <td>Account Locked <br><p style="color: darkred;"><%= User.find(image.user_id).email %></p> <td>
                 <% end %>        
 	        		</tr>	 	
 	      		<% end %>          

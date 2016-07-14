@@ -4,6 +4,7 @@ class ImagesController < ApplicationController
   before_action :require_super_user, only: [:edit, :destroy, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy, :show]
   before_action :require_user
+  before_action :set_super_user, only: [:index, :show]
 
   # GET /images
   # GET /images.json
@@ -121,7 +122,7 @@ class ImagesController < ApplicationController
     def require_super_user
       unless current_user == User.find_by(email: 'sammydallal@gmail.com') || current_user.id == @image.user_id
         flash[:info] = "You can only edit or delete your own photos"
-        redirect_to :back
+        redirect_to images_path
       end
     end
 
@@ -141,5 +142,8 @@ class ImagesController < ApplicationController
         flash[:danger] = "You can only view, edit or delete your own photos"
         redirect_to images_path
       end
+    end
+    def set_super_user
+      @super_user = User.find_by(email: 'sammydallal@gmail.com')
     end
 end

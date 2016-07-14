@@ -3,6 +3,8 @@ class FreeusersController < ApplicationController
 	before_action :require_admin
 	before_action :set_user, only: [:edit, :update, :show, :destroy, :admin_change, :require_super_user]
 	before_action :require_super_user, only: [:edit, :destroy]
+	before_action :set_super_user, only: [:edit, :destroy, :index]
+
 	
 	
 
@@ -72,9 +74,13 @@ class FreeusersController < ApplicationController
 
 	def require_super_user
 		unless current_user == User.find_by(email: 'sammydallal@gmail.com') || current_user == @user
-  		flash[:info] = "You must be the appilcation owner to perform that action"
-  		redirect_to :back
-      end
+	  		flash[:info] = "You must be the appilcation owner to perform that action"
+	  		redirect_to freeusers_path
+      	end
+  	end
+
+  	def set_super_user
+  		@super_user = User.find_by(email: 'sammydallal@gmail.com')
   	end
 
 
