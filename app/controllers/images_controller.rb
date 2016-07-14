@@ -106,10 +106,15 @@ class ImagesController < ApplicationController
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
-    @image.destroy
+    if current_user == User.find_by(email: 'demo@photo-app.com') || current_user == User.find_by(email: "admin@photo-app.com")
+      flash[:info] = "Demo account's cannot delete images please sign-up!!"
+      redirect_to :back
+    else
+    @image.destroy 
     respond_to do |format|
       format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
       format.json { head :no_content }
+    end
     end
   end
 
