@@ -1,6 +1,7 @@
 class Payment < ActiveRecord::Base
 	attr_accessor :card_number, :card_cvv, :card_expires_month, :card_expires_year
 	belongs_to :user
+	
 
 
 	def self.month_options
@@ -15,5 +16,7 @@ class Payment < ActiveRecord::Base
 		customer = Stripe::Customer.create email: email, card: token
 		Stripe::Charge.create customer: customer.id, ammount: 10000, description: 'Premium', currency: 'usd'
 	end
+
+	
 
 end

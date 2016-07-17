@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :payment
   has_many :images, dependent: :destroy
   has_many :albums, dependent: :destroy
+  rails_admin do 
+    object_label_method :email 
+  end 
+  # acts_as_taggable
 
   def self.search(param)
 	  	return User.all if param.blank?
