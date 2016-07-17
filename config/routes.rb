@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   
+
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :images do
     # resources :picture, :only => [:create]
   end
   resources :freeusers, only: [:show, :destroy, :index, :edit]
   resources :albums
-  resources :albumsshows, only: [:show]
+  # resources :images
+  # resources :albumsshows, only: [:show]
   devise_for :users, :controllers => { :registrations => 'registrations'}
   
   

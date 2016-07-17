@@ -19,8 +19,11 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'hirb'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rmagick', require: false
 gem 'fog'
 gem 'aws-sdk'
+gem 'rails_admin'
+# gem 'rails_admin_tag_list'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
