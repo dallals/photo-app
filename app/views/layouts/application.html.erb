@@ -92,8 +92,11 @@
                     <% end %>
                   <% end %>
             <% else %> 
-                 
-            <li><%= link_to "Edit your profile", "/users/edit"  %></li>
+            <% if current_user == User.find_by(email: 'admin@photo-app.com') || current_user == User.find_by(email: 'demo@photo-app.com')%>   
+              <li style="margin-top: 16px; margin-left: 20px; color: darkred;"><strong>Demo Account Sign-up for Full Access </strong></li>
+            <% else %>
+              <li><%= link_to "Edit your profile", "/users/edit"  %></li>
+            <% end %>
             
             <% end %>
             </ul>
@@ -106,8 +109,11 @@
           <ul class="nav navbar-right col-md-4">
             <% if current_user %>
             <li class="col-md-8 user-name">
-
+              <% if current_user == User.find_by(email: 'admin@photo-app.com') || current_user == User.find_by(email: 'demo@photo-app.com')%>
+                  </li>
+              <% else %>
               <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe, edit_user_registration_path, title: 'Edit Profile'%></li>
+             <% end %>
             <li class="col-md-1">&nbsp;</li> 
             <li class="col-md-3 logout"><%= link_to('Logout', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
             <% else %>
