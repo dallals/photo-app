@@ -7,7 +7,6 @@ class Image < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
   validates :name, presence: true, length: { minimum: 3, maximum: 30 }, on: :create
   validate :picture_size
-  # acts_as_taggable
   validate :validate_photo_quota
 
 
