@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 
   def demo_account
     if current_user == User.find_by(email: 'demo@photo-app.com') || current_user == User.find_by(email: "admin@photo-app.com")
-      flash[:info] = "Demo accounts cannot delete or edit. Please Sign Up!!"
+      flash[:info] = "Demo accounts cannot create delete or edit. Please Sign Up!!"
       redirect_to :back
     end
   end
