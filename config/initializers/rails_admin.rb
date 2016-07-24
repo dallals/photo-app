@@ -24,6 +24,10 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'User' do
+    navigation_icon 'icon-user'
+  end
+
   # config.assets.initialize_on_precompile = false
   ## == Devise ==
   config.authenticate_with do

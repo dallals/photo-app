@@ -38,6 +38,10 @@ $(document).ready(function(){
                 pagination: false     
               });
             });
+
+ //    $('.ckeditor').ckeditor({
+ //  // optional config
+	// });        
          
 })
 
