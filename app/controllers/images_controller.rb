@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy, :show]
   before_action :require_user
   before_action :set_super_user, only: [:index, :show]
+  before_action :demo_account, only: [:destroy, :update, :create]
 
   # GET /images
   # GET /images.json
@@ -50,8 +51,6 @@ class ImagesController < ApplicationController
     @image.user = current_user
     # add_more_images(image_params[:pictures])
     # flash[:error] = "Failed uploading images" unless @image.save
-    
-
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
@@ -63,9 +62,6 @@ class ImagesController < ApplicationController
       end
     end
   end
-
-
-
   # PATCH/PUT /images/1
   # PATCH/PUT /images/1.json
   def update
@@ -80,6 +76,7 @@ class ImagesController < ApplicationController
       end
     end
   end
+  
 
   def search
     @images = Image.search(params[:search_param])
@@ -106,17 +103,13 @@ class ImagesController < ApplicationController
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
-    if current_user == User.find_by(email: 'demo@photo-app.com') || current_user == User.find_by(email: "admin@photo-app.com")
-      flash[:info] = "Demo accounts cannot delete images please sign-up!!"
-      redirect_to :back
-    else
     @image.destroy 
     respond_to do |format|
       format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
       format.json { head :no_content }
     end
-    end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -130,13 +123,11 @@ class ImagesController < ApplicationController
         redirect_to images_path
       end
     end
-
     # def add_more_images(new_images)
     #   # images = @image.picture # copy the old images 
     #   images += new_images # concat old images with new ones
     #   @image.pictures = images # assign back
     # end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
       params.require(:image).permit(:name, :caption, :picture, :user_id, :credit, { picture: []}, album_ids: [])
@@ -148,7 +139,9 @@ class ImagesController < ApplicationController
         redirect_to images_path
       end
     end
+
     def set_super_user
       @super_user = User.find_by(email: 'sammydallal@gmail.com')
     end
+
 end

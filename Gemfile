@@ -19,7 +19,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'hirb'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'rmagick', require: false
+# gem 'rmagick', require: false
 gem 'fog'
 gem 'aws-sdk'
 gem 'rails_admin'
@@ -38,6 +38,8 @@ gem 'table_print'
 gem 'instagram'
 gem 'social-share-button', '~> 0.1.6'
 gem 'pg'
+# gem 'ckeditor_rails'
+# gem 'trix'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

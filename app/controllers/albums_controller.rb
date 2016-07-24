@@ -3,6 +3,7 @@ class AlbumsController < ApplicationController
  	before_action :require_same_user, only: [:edit, :update, :destroy, :show]
  	before_action :require_super_user, only: [:edit, :destroy, :update]
  	before_action :set_super_user, only: [:index, :show]
+ 	before_action :demo_account, only: [:destroy, :update, :create]
 	
 	def index
 		if current_user.admin?
@@ -32,7 +33,7 @@ class AlbumsController < ApplicationController
 	end
 
 	def create
-		@album = Album.create album_params
+		@album = Album.new(album_params)
 		# @album.user_id = current_user.id 
 		if @album.save
 			flash[:success] = "You have created a new Album"
