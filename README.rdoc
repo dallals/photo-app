@@ -1,4 +1,4 @@
-== README
+== Photo Management Application
 
 A image management application where users can upload and organize photos into albums. I built the application using Ruby on Rails, JavaScript, Bootstrap, AJAX and Amazon S3. Sign-up play around. You can use the following login to test the application. demo@photo-app.com Password: password or admin@photo-app.com Password: password 
 <tt>rake doc:app</tt>.
