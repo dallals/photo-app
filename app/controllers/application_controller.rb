@@ -3,11 +3,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+  # before_action :sleep_for_a_bit
   # before_action :set_user, only: [:require_super_user]
   helper_method :current_user, :logged_in?
   
 
 
+  # def sleep_for_a_bit
+  #   sleep 1
+  # end
 
   def logged_in?
   	!!current_user

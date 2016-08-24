@@ -20,13 +20,12 @@ class User < ActiveRecord::Base
 	  	email_matches(param).uniq 
 	end
 
-
 	def self.email_matches(param)
 		matches('email', param)
 	end
 
 	def self.matches(field_name, param)
 		where("lower(#{field_name}) like ?", "%#{param}%")
-	end
 
+	end
 end	

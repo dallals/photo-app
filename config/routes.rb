@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   # resources :albumsshows, only: [:show]
   devise_for :users, :controllers => { :registrations => 'registrations'}
   
-  
+  # get 'show_images/:id', to: "album#show_image"
+  get '/show_image/:id', :controller => 'albums', :action => 'show_image'
+
   post 'search_images', to: "images#search"
   post 'search_images_album', to: "albums#search"
-  post 'search_freeusers', to: "freeusers#searchuser"
+  post 'search_freeusers', to: "freeusers#search"
   
   match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
   root 'welcome#index'
