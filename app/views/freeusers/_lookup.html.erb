@@ -3,10 +3,9 @@
 <div id="user-lookup">
   <h3>Search for Users</h3>
   <div class="form-group row no-padding text-center col-md-8">
-  <%= form_tag search_freeusers_path, remote: true, method: :post, id: 'user-lookup-form' do %>
+  <%= form_tag search_freeusers_path, method: :post, remote: true, id: 'user-lookup-form', role: "search" do %>
     <div class="col-md-8">
-      <%= text_field_tag :search_param, params[:search_param], autofocus: true,
-                                                          class: 'form-control search-box input-sm' %>
+      <%= text_field_tag :search, nil, autofocus: true, class: 'form-control search-box input-sm' %>
     </div>
       <div class="col-md-2">
         <%= button_tag(type: :submit, class: "btn btn-sm btn-success") do %>
@@ -21,7 +20,7 @@
                   freeusers_path, :class => 'btn-sm btn-info btn active'  %> 
       </div>
 
-  	<% if @freeusers.size > 0 %>
+  	
     	<div id="user-lookup-results">
 	    	<table class="search-results-table col-md-12 table table-striped">
         <thead>
@@ -65,7 +64,7 @@
       </div>
 
 </div> 
-<% end %>  
+ 
 <div class="flickr_pagination">
     <div class="page_info">
       <%= page_entries_info  %>

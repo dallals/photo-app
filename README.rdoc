@@ -1,28 +1,5 @@
-== README
+== Photo Management Application www.yourphotocenter.com
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A image management application where users can upload and organize photos into albums. I built the application using Ruby on Rails, JavaScript, Bootstrap, AJAX and Amazon S3. Sign-up play around. You can use the following login to test the application. demo@photo-app.com Password: password or admin@photo-app.com Password: password 
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

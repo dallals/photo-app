@@ -19,6 +19,7 @@ class AlbumsController < ApplicationController
 	  @album = Album.new
   	end
 
+
 	def show
 		# @image_albums = @album.images.paginate(page: params[:page], per_page: 5).order(updated_at: :desc)
     	@image_albums = @album.images.all.order(updated_at: :desc)
@@ -26,8 +27,11 @@ class AlbumsController < ApplicationController
 	end
 
 	def show_image
-		@album = Album.where(user_id: current_user)
-		@image = Image.where(user_id: current_user)
+		# @album = Album.where(user_id: current_user)
+		@image = Image.find(params[:id])
+		# @album = @image.album(image_id: @image.id) 
+		@album = Album.find_by(user_id: current_user) 
+		@image_albums = @album.images.all.order(updated_at: :desc)
 		@id = User.find(current_user)
 		#need to make an albumimage controller to display single images with thumbnails from just the album
 	end

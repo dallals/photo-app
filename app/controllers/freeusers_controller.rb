@@ -42,17 +42,22 @@ class FreeusersController < ApplicationController
 	  end
   	end 
 
-  def searchuser
-    @users = User.search(params[:search_param])
-    # puts @images
-    if @users
-      # @users = current_user.except_current_user(@users)
-      render partial: "lookup"
-    else
-      render status: :not_found, nothing: true
-    end
+  # def searchuser
+  #   @users = User.search(params[:search_param])
+  #   # puts @images
+  #   if @users
+  #     # @users = current_user.except_current_user(@users)
+  #     render partial: "lookup"
+  #   else
+  #     render status: :not_found, nothing: true
+  #   end
+  #   respond_to do |format|
+  #   	format.js
+  #   end
+  # end
+  def search
+  	@user = User.search(params[:search]).paginate(:page => params[:page])
   end
-
 	# def login
 	# 	user = User.find_by(email:params[:session][:email].downcase)
 	# 		if user && user.authenticate(params[:session][:password])

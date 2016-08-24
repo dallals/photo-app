@@ -1,4 +1,4 @@
-var init_freeuser_lookup;
+// var init_freeuser_lookup;
 
 console.log('beingloaded')
 $(document).ready(function(){

@@ -71,9 +71,7 @@
 	    <% else %>	
 	    	<p class="lead col-md-12">No images match this search </p>
 	    <% end %>   
-      <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_image_path,
-            :class => 'btn btn-primary' %>	
+      <%= link_to t('.new', :default => t("helpers.links.new")), new_image_path, :class => 'btn btn-primary' %>	
       <%= link_to "All Images", "/images", :class => 'btn btn-info'  %>  
       <% if !current_user.admin %>
       <% end %>    		
