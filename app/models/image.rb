@@ -30,7 +30,8 @@ class Image < ActiveRecord::Base
   	param.downcase!
   	(name_matches(param) + caption_matches(param) + credit_matches(param)).uniq 
   	# caption_matches(param).uniq 
-  	# credit_matches(param)  	
+  	# credit_matches(param)
+  	
   end
 
   def self.name_matches(param)
@@ -47,7 +48,7 @@ class Image < ActiveRecord::Base
 
 
   def self.matches(field_name, param)
-    where("lower(#{field_name}) ilike ?", "%#{param}%")
+    where("lower(#{field_name}) like ?", "%#{param}%")
   end
 
 
