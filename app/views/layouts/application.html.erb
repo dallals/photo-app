@@ -117,7 +117,7 @@
             <li class="col-md-1">&nbsp;</li> 
             <li class="col-md-3 logout"><%= link_to('Logout', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
             <% else %>
-            <li class="col-md-4 pull-right"><%= link_to('Sign In', new_user_session_path, class: 'btn btn-primary', title: 'Sign In') %></li>
+            <li class="col-md-4 pull-right"><%= link_to('Sign In', new_user_session_path, class: 'btn btn-xs btn-primary', title: 'Sign In') %></li>
             <% end %>
           </ul>
         </div>
