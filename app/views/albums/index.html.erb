@@ -1,8 +1,7 @@
 <h1 align="center">Listing all Albums</h1>
 <div id="welcome_background">
 	<div align="center" style="width: 1150px; height: 800px; overflow: scroll">		
-		<% @albums.each do |album| %>
-		<% if current_user.id == album.user_id || current_user.admin? %>
+		<% @albums.each do |album| %>	
 			<ul class="listing">
 				<div class="row">
 					<div class="well col-md-4 col-md-offset-4" style="opacity: 0.6; margin-top: 15px; border: 1px solid grey;">
@@ -15,8 +14,7 @@
 						<% end %>
 					</div>		
 				</div>
-			</ul>
-			<% end %>
+			</ul>		
 		<% end %>	
 	 </div>	
 </div> 

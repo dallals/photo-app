@@ -9,7 +9,7 @@ class AlbumsController < ApplicationController
 		if current_user.admin?
 			@albums = Album.all.order(user_id: :asc)
 		else
-			@albums = Album.all
+			@albums = Album.where(user_id: current_user.id)
 		end	
 		# @albums = Album.paginate(page: params[:page], per_page: 5).order(name: :asc)
 		@images = Image.where(user_id: current_user)
