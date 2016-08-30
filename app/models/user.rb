@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  devise :timeoutable, :timeout_in => 120.minutes       
+  devise :timeoutable, :timeout_in => 180.minutes       
   has_one :payment
   accepts_nested_attributes_for :payment
   has_many :images, dependent: :destroy
@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   #   object_label_method :email 
   # end 
   # acts_as_taggable
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   def self.search(param)
 	  	return User.all if param.blank?

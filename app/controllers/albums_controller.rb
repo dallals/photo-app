@@ -79,30 +79,30 @@ class AlbumsController < ApplicationController
 
   private
 
-  	def album_params
-    	params.require(:album).permit(:name).merge(user: current_user)
-  	end
+		def album_params
+	  	params.require(:album).permit(:name).merge(user: current_user)
+		end
 
   	def set_album
   		 @album = Album.find(params[:id])
     end
 
-	def require_super_user
-		unless current_user == User.find_by(email: 'sammydallal@gmail.com') || current_user.id == @album.user_id
-		  flash[:info] = "You can only edit or delete your own Albums"
-		  redirect_to albums_path
+		def require_super_user
+			unless current_user == User.find_by(email: 'sammydallal@gmail.com') || current_user.id == @album.user_id
+			  flash[:info] = "You can only edit or delete your own Albums"
+			  redirect_to albums_path
+			end
 		end
-	end
 
-  	def require_same_user
-      if current_user.id != @album.user_id and !current_user.admin?
-        flash[:danger] = "You can only view, edit or delete your own albums"
-        redirect_to albums_path
-      end
-    end
+		def require_same_user
+	    if current_user.id != @album.user_id and !current_user.admin?
+	      flash[:danger] = "You can only view, edit or delete your own albums"
+	      redirect_to albums_path
+	    end
+	  end
 
-    def set_super_user
-      @super_user = User.find_by(email: 'sammydallal@gmail.com')
-    end
+	  def set_super_user
+	    @super_user = User.find_by(email: 'sammydallal@gmail.com')
+	  end
 
 end

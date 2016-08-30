@@ -24,7 +24,8 @@
     	<div id="user-lookup-results">
 	    	<table class="search-results-table col-md-12 table table-striped">
         <thead>
-          <tr>  
+          <tr> 
+            <th><%= model_class.human_attribute_name(:full_name) %></th>
             <th><%= model_class.human_attribute_name(:email) %></th>
             <th><%= model_class.human_attribute_name(:admin) %></th>
             <th><%= model_class.human_attribute_name(:updated_at) %></th>
@@ -36,6 +37,7 @@
 	    		<tbody>          
 	    			<% @freeusers.each do |user| %>  
 	    			<tr>
+                <td><%= user.full_name %></td>
 	    				  <td><strong><%= link_to user.email, freeuser_path(user) %></strong></td>
                 <td style="color: darkred;"><%= user.admin %></td>
 					      <td><%= time_ago_in_words (user.updated_at) %> ago</td>

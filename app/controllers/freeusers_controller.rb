@@ -20,7 +20,8 @@ class FreeusersController < ApplicationController
     def edit
     	if current_user.admin && current_user == User.find_by(email: 'sammydallal@gmail.com')
 	    	admin = @user
-	    	admin.toggle!(:admin) unless current_user == @user 
+	    	admin.toggle!(:admin) unless current_user == @user
+	    	flash[:success] = "#{@user.email}'s admin status has been changed" unless current_user == @user
 	    	redirect_to :back
 	    else
 	    	flash[:danger] = "#{current_user.email} doesn't have the ability to change admin status"
@@ -40,7 +41,7 @@ class FreeusersController < ApplicationController
 	  	flash[:danger] = "You can not delete an Admin account"
 	  	redirect_to :back
 	  end
-  	end 
+  end 
 
   # def searchuser
   #   @users = User.search(params[:search_param])
@@ -87,6 +88,4 @@ class FreeusersController < ApplicationController
   	def set_super_user
   		@super_user = User.find_by(email: 'sammydallal@gmail.com')
   	end
-
-
 end
