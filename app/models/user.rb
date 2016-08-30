@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :payment
   has_many :images, dependent: :destroy
   has_many :albums, dependent: :destroy
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   # rails_admin do 
   #   object_label_method :email 
   # end 

@@ -45,9 +45,9 @@
                     <% User.all.each do |user| %>
                     <li>
                       <% if user.admin? %>
-                        <%= link_to "Admin User: " + "#{user.email}", freeuser_path(user)%>
+                        <%= link_to "Admin User: " + "#{user.full_name}", freeuser_path(user)%>
                       <% else %>
-                        <%= link_to "#{user.email}", freeuser_path(user)%>
+                        <%= link_to "#{user.full_name}", freeuser_path(user)%>
                     </li>
                     <% end %>
                   <% end %>
