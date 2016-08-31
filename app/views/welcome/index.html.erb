@@ -1,7 +1,7 @@
 
 <!-- <script src="assets/jqFancyTransitions.js"></script> -->
 <% if current_user %>	 
-	<h1 align="center"> Welcome to the Photo Managment App!</h1>
+	<h1 align="center"> Welcome <%= current_user.full_name %> your photo center!</h1>
 	<!-- <div id="welcome_background"> -->
 	<div id="main_body">
 	    <% if @images.size < 2 %> 

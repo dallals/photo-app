@@ -17,7 +17,7 @@
                   <li><%= link_to "Show All Albums", albums_path %></li>
                   <li role="separator" class="divider"></li>
                 <% else %>  
-                  <li><%= link_to "Albums by: #{current_user.email}", albums_path %></li>
+                  <li><%= link_to "Albums by: #{current_user.full_name}", albums_path %></li>
                   <li role="separator" class="divider"></li>
                 <% end %>  
                     <% Album.all.each do |album| %>
