@@ -10,7 +10,7 @@
 						</li>
 						<li><strong><%= pluralize(album.images.count, "images") %></strong></li>
 						<% if current_user.admin %>
-							<li><strong style="font-weight: bold; color: darkred;">Album Owner: <%= User.find(album.user_id).email %></strong></li>
+							<li><strong style="font-weight: bold; color: darkred;">Album Owner: <%= User.find(album.user_id).full_name %></strong></li>
 						<% end %>
 					</div>		
 				</div>
