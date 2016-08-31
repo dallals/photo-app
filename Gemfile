@@ -38,6 +38,7 @@ gem 'table_print'
 gem 'instagram'
 gem 'social-share-button', '~> 0.1.6'
 gem 'pg'
+gem 'will_paginate-bootstrap'
 # gem 'ckeditor_rails'
 # gem 'trix'
 

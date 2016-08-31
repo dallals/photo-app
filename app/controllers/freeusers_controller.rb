@@ -1,9 +1,9 @@
 class FreeusersController < ApplicationController
 	# skip_before_action :authenticate_user!
-	before_action :require_admin
+	before_action :require_admin, except: [:search]
 	before_action :set_user, only: [:edit, :update, :show, :destroy, :admin_change, :require_super_user]
 	before_action :require_super_user, only: [:edit, :destroy]
-	before_action :set_super_user, only: [:edit, :destroy, :index]
+	before_action :set_super_user, only: [:edit, :destroy, :index, :search]
 
 	
 	
@@ -13,24 +13,24 @@ class FreeusersController < ApplicationController
 		@freeusers = User.paginate(page: params[:page], per_page: 20).order(email: :asc)
 	end
 
-    def show
-    	@images = Image.all.order(updated_at: :desc)
-    end
+  def show
+  	@images = Image.all.order(updated_at: :desc)
+  end
 
-    def edit
-    	if current_user.admin && current_user == User.find_by(email: 'sammydallal@gmail.com')
-	    	admin = @user
-	    	admin.toggle!(:admin) unless current_user == @user
-	    	flash[:success] = "#{@user.email}'s admin status has been changed" unless current_user == @user
-	    	redirect_to :back
-	    else
-	    	flash[:danger] = "#{current_user.email} doesn't have the ability to change admin status"
-	    	redirect_to :back
-	    end
-	    # admin = @user
-	    # admin.toggle!(:admin) unless current_user == @user
-	    # redirect_to :back
+  def edit
+  	if current_user.admin && current_user == User.find_by(email: 'sammydallal@gmail.com')
+    	admin = @user
+    	admin.toggle!(:admin) unless current_user == @user
+    	flash[:success] = "#{@user.full_name}'s admin status has been changed" unless current_user == @user
+    	redirect_to freeusers_path
+    else
+    	flash[:danger] = "#{current_user.full_name} doesn't have the ability to change admin status"
+    	redirect_to :back
     end
+    # admin = @user
+    # admin.toggle!(:admin) unless current_user == @user
+    # redirect_to :back
+  end
 
 	def destroy
 		if !@user.admin?
@@ -57,7 +57,7 @@ class FreeusersController < ApplicationController
   #   end
   # end
   def search
-  	@user = User.search(params[:search]).paginate(:page => params[:page])
+  	@users = User.search_by_name(params[:search_name]).paginate(:page => params[:page])
   end
 	# def login
 	# 	user = User.find_by(email:params[:session][:email].downcase)

@@ -53,7 +53,7 @@
                   <% end %>
             <% else %> 
             <% if current_user == User.find_by(email: 'admin@photo-app.com') || current_user == User.find_by(email: 'demo@photo-app.com')%>   
-              <li style="margin-top: 16px; margin-left: 20px; color: darkred;"><strong>Demo Account Sign-up for Full Access </strong></li>
+              <li style="margin-top: 16px; margin-left: 20px; color: darkred;"><strong>Demo Account </strong></li>
             <% else %>
               <li><%= link_to "Edit your profile", "/users/edit"  %></li>
             <% end %>
@@ -66,6 +66,14 @@
             <% end %>  
           <% end %>  
           </ul>
+          <% if current_user %>
+            <%= form_tag(search_freeusers_path, class: "navbar-form navbar-left", role: "search") do %>
+              <div class="form-group">
+                <%= text_field_tag :search_name, nil, placeholder: "Search for Users", class: "form-control"%>
+              </div>
+                <%= submit_tag "Search", class: "btn btn-sm btn-info"%>
+              <% end %>
+            <% end %>
           <ul class="nav navbar-right col-md-4">
             <% if current_user %>
             <li class="col-md-8 user-name">

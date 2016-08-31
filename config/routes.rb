@@ -2,11 +2,21 @@ Rails.application.routes.draw do
   
 
 
+  get 'friends/index'
+
+  get 'friends/destory'
+
+  resources :friend_requests
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :images do
     # resources :picture, :only => [:create]
   end
-  resources :freeusers, only: [:show, :destroy, :index, :edit]
+  resources :freeusers, only: [:show, :destroy, :index, :edit] do
+    collection do
+      post :search, to: 'freeusers#search'
+    end
+  end
+
   resources :albums
   # resources :images
   # resources :albumsshows, only: [:show]
