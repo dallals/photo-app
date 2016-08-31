@@ -44,7 +44,7 @@
                 <td><a href="/images/<%= image.id %>"><%= image_tag image.picture.url, width: "125" %></a></td>
 					      <td><%= time_ago_in_words (image.updated_at) %> ago</td>
                 <% if current_user.admin? %>
-                <td style="color: darkred;"><%= User.find(image.user_id).email %></td>
+                <td style="color: darkred;"><%= User.find(image.user_id).full_name %></td>
                 <% end %>
 					      <td><strong><%= image.credit %></strong></td>
                 <% if current_user == @super_user || current_user.id == image.user_id %>
