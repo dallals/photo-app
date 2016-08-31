@@ -1,0 +1,41 @@
+<%- model_class = User -%>
+
+
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
+
+<table class="search-results-table col-md-12 table table-striped">
+	<thead>
+    <tr> 
+      <th>Full Name</th>
+      <th>Email</th>
+      <% if current_user.admin? %>
+      	<th>Admin</th>
+      <% end %>
+      <th>Updated At</th>
+      <th>Actions</th>  
+    </tr>
+  </thead>
+
+	<tbody>          
+		<% @users.each do |user| %>  
+		<tr>
+	      <td><%= user.full_name %></td>
+	      <% if current_user == @super_user %>
+			  	<td><strong><%= link_to user.email, freeuser_path(user) %></strong></td>
+			  	<td><%= user.admin %></td>
+			  <% else %>
+			  	<td>Must be friends to see email address</td>	
+			  <% end %>
+	      <td><%= time_ago_in_words (user.updated_at) %> ago</td>
+	       <td>
+	       	<% if current_user == @super_user%> 
+	          <%=link_to 'Add Friend', friend_requests_path(friend_id: user.id), method: :post, :class => 'btn btn-xs btn-primary' %> 
+	          	<%= link_to 'Admin?', edit_freeuser_path(user), :class => 'btn btn-xs btn-danger'%> 
+	          <% end %>      
+	      </td>            
+			</tr>	 	
+		<% end %>          
+
+	</tbody>
+</table>

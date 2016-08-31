@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :payment
   has_many :images, dependent: :destroy
   has_many :albums, dependent: :destroy
+  has_many :friend_requests, dependent: :destroy
+  has_many :pending_friends, through: :friend_requests, source: :friend
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   # rails_admin do 
@@ -19,19 +24,20 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def self.search(param)
-	  	return User.all if param.blank?
-	  	param.strip!
-	  	param.downcase!
-	  	email_matches(param).uniq 
-	end
 
-	def self.email_matches(param)
-		matches('email', param)
-	end
+  def self.search_by_name(name) 
+    return User.none if name.blank?
+    names_array = name.split(' ')
+    if names_array.size == 1
+      where('first_name LIKE ? or last_name LIKE ?', "%#{names_array[0]}%", "%#{names_array[0]}%").order(:first_name)
+    else
+      where('first_name LIKE ? or first_name LIKE ? or last_name LIKE ? or last_name LIKE ?', 
+    "%#{names_array[0]}%", "%#{names_array[1]}%", "%#{names_array[0]}%", "%#{names_array[1]}%").order(:first_name)
+    end 
+  end
 
-	def self.matches(field_name, param)
-		where("lower(#{field_name}) like ?", "%#{param}%")
-
-	end
+  def remove_friend(friend)
+    current_user.friends.destroy(friend)
+  end
+	
 end	
