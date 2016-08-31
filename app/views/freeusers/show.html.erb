@@ -1,5 +1,5 @@
 <%- model_class = Image -%>
-<h3 align="center"> <%= "User: " + @user.email %></h3>
+<h3 align="center"> <%= "User: " + @user.full_name %></h3>
 
 
 <% if !@user.admin? || current_user == User.find(1) %>
