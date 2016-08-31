@@ -4,7 +4,7 @@
 <div class="page-header" style="margin-top: -25px; padding-top: 5px;">
   <h1><%= @image.name %></h1>
   <% if current_user.admin? %>  
-    <p style="font-weight: bold; color: darkred;">This Photo Belongs to: <%= @id.email %> </p>
+    <p style="font-weight: bold; color: darkred;">This Photo Belongs to: <%= @id.full_name %> </p>
   <% end %>
 
 </div>       
