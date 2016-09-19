@@ -2,8 +2,8 @@
 
 class PictureUploader < CarrierWave::Uploader::Base
 
-  # include CarrierWave::MiniMagick
-  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
+  # include CarrierWave::RMagick
   process resize_to_limit: [1000, 1000] unless %w(pdf doc)
 
   
