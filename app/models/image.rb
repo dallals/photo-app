@@ -4,6 +4,7 @@ class Image < ActiveRecord::Base
   has_many :image_albums
   has_many :albums, through: :image_albums
   # belongs_to :freeuser
+  # attribute :files, ArrayType.new
   mount_uploader :picture, PictureUploader
   validates :name, presence: true, length: { minimum: 3, maximum: 30 }, on: :create
   validate :picture_size

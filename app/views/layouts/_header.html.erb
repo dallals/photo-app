@@ -52,13 +52,13 @@
                     <% end %>
                   <% end %>
             <% else %> 
-            <% if current_user == User.find_by(email: 'admin@photo-app.com') || current_user == User.find_by(email: 'demo@photo-app.com')%>   
-              <li style="margin-top: 16px; margin-left: 20px; color: darkred;"><strong>Demo Account </strong></li>
-            <% else %>
-              <li><%= link_to "Edit your profile", "/users/edit"  %></li>
-            <% end %>
-            
-            <% end %>
+              <% if current_user == User.find_by(email: 'admin@photo-app.com') || current_user == User.find_by(email: 'demo@photo-app.com')%>   
+                <li style="margin-top: 16px; margin-left: 20px; color: darkred;"><strong>Demo Account </strong></li>
+              <% else %>
+                <li><%= link_to "Edit your profile", "/users/edit"  %></li>
+              <% end %>
+              
+              <% end %>
             </ul>
             </li>
             <% if current_user.admin %>
@@ -66,28 +66,30 @@
             <% end %>  
           <% end %>  
           </ul>
-          <% if current_user %>
-            <%= form_tag(search_freeusers_path, class: "navbar-form navbar-left", role: "search") do %>
-              <div class="form-group">
-                <%= text_field_tag :search_name, nil, placeholder: "Search for Users", class: "form-control"%>
-              </div>
-                <%= submit_tag "Search", class: "btn btn-sm btn-info"%>
-              <% end %>
-            <% end %>
-          <ul class="nav navbar-right col-md-4">
-            <% if current_user %>
-            <li class="col-md-8 user-name">
-              <% if current_user == User.find_by(email: 'admin@photo-app.com') || current_user == User.find_by(email: 'demo@photo-app.com')%>
-                  </li>
-              <% else %>
-              <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.full_name, length: 25)).html_safe, edit_user_registration_path, title: 'Edit Profile'%></li>
-             <% end %>
-            <li class="col-md-1">&nbsp;</li> 
-            <li class="col-md-3 logout"><%= link_to('Logout', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
-            <% else %>
-            <li class="col-md-4 pull-right"><%= link_to('Sign In', new_user_session_path, class: 'btn btn-xs btn-primary', title: 'Sign In') %></li>
-            <% end %>
-          </ul>
+          <ul class="">    
+              <% if current_user %>
+                <%= form_tag(search_freeusers_path, class: "navbar-form navbar-left", role: "search") do %>
+                  <div class="form-group">
+                    <%= text_field_tag :search_name, nil, placeholder: "Search for Users", class: "form-control"%>
+                    <%= submit_tag "Search", class: "btn btn-sm btn-info"%>
+                    </div>
+                  <% end %>
+                <% end %>
+              <ul class="nav navbar-right col-md-4">
+                <% if current_user %>
+                <li class="col-md-8 user-name">
+                  <% if current_user == User.find_by(email: 'admin@photo-app.com') || current_user == User.find_by(email: 'demo@photo-app.com')%>
+                </li>
+                  <% else %>
+                  <%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.full_name, length: 25)).html_safe, edit_user_registration_path, title: 'Edit Profile'%></li>
+                 <% end %>
+                <li class="col-md-1">&nbsp;</li> 
+                <li class="col-md-3 logout"><%= link_to('Logout', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'Logout', :method => :delete) %></li>
+                <% else %>
+                <li class="col-md-4 pull-right"><%= link_to('Sign In', new_user_session_path, class: 'btn btn-xs btn-primary', title: 'Sign In') %></li>
+                <% end %>
+              </ul>
+            </ul>   
         </div>
       </div>
     </div>

@@ -28,6 +28,23 @@ RailsAdmin.config do |config|
     navigation_icon 'icon-user'
   end
 
+  config.model 'User' do
+    list do
+      field :id
+      field :first_name
+      field :last_name
+      field :email
+      field :created_at do
+        date_format :short
+      end
+      field :updated_at do
+        date_format :short
+      end
+      field :images
+      field :albums
+      field :friends
+    end
+  end
   # config.assets.initialize_on_precompile = false
   ## == Devise ==
   config.authenticate_with do
