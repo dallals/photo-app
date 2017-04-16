@@ -35,9 +35,27 @@ $(document).ready(function(){
               });
             });
 
+		  $(function() {
+		    $('#slides').slidesjs({
+		      width: 1100,
+		      height: 700,
+		      navigation: true
+		    });
+		 	});
+
  //    $('.ckeditor').ckeditor({
  //  // optional config
-	// });        
+	// });  
+		// var jumboHeight = $('.jumbotron').outerHeight();
+		// function parallax(){
+		//     var scrolled = $(window).scrollTop();
+		//     $('.bg').css('height', (jumboHeight-scrolled) + 'px');
+		// }
+
+		// $(window).scroll(function(e){
+		//     parallax();
+		// });
+      
          
 })
 

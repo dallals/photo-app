@@ -40,6 +40,7 @@ gem 'instagram'
 gem 'social-share-button', '~> 0.1.6'
 gem 'pg'
 gem 'will_paginate-bootstrap'
+gem 'bootstrap-sass', '~> 3.3.4.1'
 # gem 'ckeditor_rails'
 # gem 'trix'
 

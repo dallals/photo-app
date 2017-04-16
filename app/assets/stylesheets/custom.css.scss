@@ -1,3 +1,5 @@
+
+
 .user-name {
 
 	padding: 0 !important ;
@@ -132,20 +134,61 @@ ul {
 	text-align: center;
 	background-image: asset-url('volcanopark-03.jpg');
 	 /*background-image:url('https://s3-us-west-1.amazonaws.com/codingdojo/2006.JPG');*/
-	background-size: cover;
-	height: 800px;
+	background-size: 100%;
+	height: cover;
+  width: cover;
 	color: #fff;
 	font-family: 'Helvetica Neue' !important;
 	font-stretch: expanded;
-	padding-top: 25px;
+/*  min-width: 100%;
+  min-height: 100%;*/
+/*	padding-top: 25px;
 	padding-bottom: 25px;
 	margin-left: 15px;
-	margin-right: 15px;
-/*  max-width: 1140px;
-  margin: 0 auto;*/
+	margin-right: 15px;*/
+  max-width: 1340px;
+  margin: 0 auto;
 	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 
 }
+
+/*.jumbotron {
+    text-align: center;
+    background-image: asset-url('volcanopark-03.jpg');
+    margin-bottom: 0px;
+    height: 960px;
+    color: #fff;
+    text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+    background: transparent;
+    font-family: 'Helvetica Neue' !important;
+    font-stretch: expanded;
+}
+*/
+.slide1 {
+  background-image:url('https://s3-us-west-1.amazonaws.com/codingdojo/2006.JPG');
+  height: 1000px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.slide2 {
+  background-image:url('https://s3-us-west-1.amazonaws.com/codingdojo/3004.JPG');
+  height: 1000px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.slide3 {
+  background-image:url('https://s3-us-west-1.amazonaws.com/codingdojo/1006.JPG');
+  height: 1000px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+
 
 /*.jumbotron2 {
   background: asset-url('volcanopark-03.jpg') no-repeat center center fixed; 

@@ -1,39 +1,27 @@
-
 <!-- <script src="assets/jqFancyTransitions.js"></script> -->
 <% if current_user %>	 
-	<h1 align="center"> Welcome <%= current_user.full_name %> your photo center!</h1>
+	
 	<!-- <div id="welcome_background"> -->
-	<div id="main_body">
-	    <% if @images.size < 2 %> 
-	    	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/1011.JPG">
-			<h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
-			<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/2009.JPG">
-	        <h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
-	    <% end %>
-	    	<% if @images.size >= 2 %>
-	            <% @images.take(8).each do |image| %>
-	            	<% if (current_user.id == image.user_id) || current_user.admin? %>
-	            		<a href="/images/"><%= image_tag image.picture.url, width: "1140" %></a>
-	            	<% else %>
-	            		<h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
-		            	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/1011.JPG">
-		            	<h2 align="center" style="margin-top: 250px; color: red;">Upload 2 images to have them displayed here</h2>
-		            	<img class="main_image" src="https://s3-us-west-1.amazonaws.com/codingdojo/2009.JPG">
-	            	<% end %> 	
-	            <% end %>
-	        <% end %>         
-	</div>	
-		<% @images.take(8).each do |image| %>		
-			<div class="col-sm-12 col-md-3" style="margin-top: 10px;">
-				<div class="thumbnail" style="height: 240px;">
-				 <a href="/images/<%= image.id %>"><%= image_tag image.picture.url %></a>
-					<div class="caption">
-						<%= image.name %>
-						<p> photo by: <%= image.credit %></p>
-					</div>
-    			</div>
-  			</div>	  				
-  		<% end %>
+	<div class="container-fluid">
+	<h1 align="center"> Welcome <%= current_user.full_name %> your photo center!</h1>
+		<div class="row">
+			<div class="col-md-12">
+			<%# carousel_for(@carousel) %>
+			<%= render "welcome/slide" %>
+				<% @images.take(8).each do |image| %>		
+					<div class="col-sm-12 col-md-3" style="margin-top: 10px;">
+						<div class="thumbnail" style="height: 240px;">
+						 <a href="/images/<%= image.id %>"><%= image_tag image.picture.url %></a>
+							<div class="caption">
+								<%= image.name %>
+								<p> photo by: <%= image.credit %></p>
+							</div>
+		    			</div>
+		  			</div>	  				
+		  		<% end %>
+		  </div>		
+	  </div>		
+  </div>	
 <% else %>
 <!-- If there is no logged in user this will display -->
 <div class="jumbotron">
@@ -78,7 +66,6 @@
     </div>  
 
 <!-- <div class="row">
-
 	<div class="plans clearfix">
 		<div class="col-lg-3 col-lg-offset-3 plan">
 			<h2>Premium Plan</h2>
@@ -93,21 +80,14 @@
 				</ul>
 			</div>
 			<p>
-			<%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %>
+			<%# link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %>
 			</p>
-
 		</div>
-
 		<div class="col-lg-3 plan">
-
 			<h2>Amaze Plan</h2>
-
 				<div class="price pull-right">
-
 				Price: Free
-
 			</div>
-
 		<div class="features">
 			<ul>
 				<li>Unlimited Image Uploads</li>
@@ -116,9 +96,8 @@
 				<li class='extra'>Unlimited projects</li>
 			</ul>
 		</div>
-			<p><%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %></p>
+			<p><%# link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %></p>
 		</div>
 	</div>
 </div> -->
 <% end %>
-

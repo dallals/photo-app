@@ -4,7 +4,9 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
   # include CarrierWave::RMagick
+  # process :store_dimensions
   process resize_to_limit: [1000, 1000] unless %w(pdf doc)
+
 
   
 
@@ -102,6 +104,32 @@ class PictureUploader < CarrierWave::Uploader::Base
   #     model.width, model.height = `identify -format "%wx%h" #{file.path}`.split(/x/)
   #   end
   # end
+private
+  # def store_dimensions
+  #    if file && model
+  #     width, height = ::MiniMagick::Image.open(file.file)[:dimensions]
+  #       if width>1000
+  #             Rails.logger.info "#{width}"
+  #             finalHeight=((1000*height)/width)
+  #             self.class.version :best_fit do
+  #               process :resize_to_fill => [1000,finalHeight]
+  #             end
+
+  #       else
+  #             Rails.logger.info "#{width}"
+  #             self.class.version :best_fit do
+  #               process :resize_to_fill => [width,height]
+  #             end
+  #       end
+  #     end
+  # end
+  
+  # def store_dimensions
+  #   if file && model
+  #     model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
+  #   end
+  # end
+  
 
 
 end
